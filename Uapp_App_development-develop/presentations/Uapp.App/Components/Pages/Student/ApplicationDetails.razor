@@ -1,0 +1,324 @@
+﻿@page "/applicatiodetils/{id:int}"
+
+@using Uapp.App.Components.Layout
+@layout ProfileLayout
+
+@if (Models != null)
+{
+    <!-- Top Nav -->
+    <div class="position-sticky top-0" style="z-index:1; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+        <div class="boundary bs-popover-bottom">
+            <div class="d-flex justify-content-between bg-fff py-3 pt-3">
+                <img @onclick="NavigateToHome" src="/assets/images/icons/icon-arrowBack.svg" alt="Icon-arrowBack" />
+                <div class="font-22-600">@Models.ApplicationViewId</div>
+                <div></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="bg-fafafb py-2 pb-4">
+        <div class="boundary">
+            <div class="application-card  mt-2">
+                <div class="d-flex justify-content-between">
+                    <div class="font-12-500">APP ID <strong>@Models.ApplicationViewId</strong></div>
+                    <div class="font-12-500 text-secondary">@Models.applicationTime.ToString("d MMMM yyyy")</div>
+                </div>
+                <div class="py-2">
+                    <div class="font-14-700">@Models.Subject?.Name</div>
+                </div>
+                <div class="font-12-400 text-secondary py-1 m-0">
+                    <div class="d-flex align-items-center">
+                        @* <div>Bachelors</div>
+                    <i class="fa-solid fa-circle" style="font-size:3px; padding:5px;"></i> *@
+
+                        <div>@Models.DeliveryPattern?.Name</div>
+                        <i class="fa-solid fa-circle" style="font-size:3px; padding:5px;"></i>
+
+                        <div>@Models.Intake?.Name</div>
+                    </div>
+                </div>
+                <div class="d-flex font-12-500">
+                    <div>
+                        <img src="assets/images/icons/bedforshire.svg" />
+                    </div>
+                    <div class="px-1">
+                        <div class="mb-0 text-nowrap">
+                            @Models.University?.Name
+                        </div>
+                        <p class="mb-0 text-secondary">
+                            Campus: @Models.Campus?.Name
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="card py-2 mt-3">
+                <div class="px-3">
+                    <div class="align-items-center d-flex justify-content-between py-1">
+                        <div class="font-12-700 col-6">Application Status</div>
+                        <div class="font-12-400 col-6 text-515151">@Models.ApplicationStatus?.Name</div>
+                    </div>
+                    <div class="align-items-center d-flex justify-content-between py-1">
+                        <div class="font-12-700 col-6">Enrolment Status</div>
+                        <div class="font-12-400 col-6 text-515151">@Models.EnrollmentStatus?.Name</div>
+                    </div>
+                    <div class="align-items-center d-flex justify-content-between py-1">
+                        <div class="font-12-700 col-6">Student Finance Status</div>
+                        <div class="font-12-400 col-6 text-515151">@Models.StudentFinanceStatus?.Name</div>
+                    </div>
+                </div>
+            </div>
+            <div class="card bg-FCF4E9 py-2 mt-3">
+                <div class="px-3">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="font-14-500 my-1">
+                            <b>
+                                Student Details Required
+                            </b>
+                        </div>
+                        <i class="fa-solid fa-angle-right"></i>
+                    </div>
+                    <div class="align-items-center">
+                        <div class="font-12-400 my-1"><i class="fa-solid fa-circle px-2" style="color: #045D5E; font-size:10px;"></i>Educational Information	</div>
+                        <div class="font-12-400 my-1"><i class="fa-solid fa-circle px-2" style="color: #045D5E; font-size:10px;"></i>Personal Statement</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card progressbar-crad mt-3">
+                <div class="font-14-700 my-2">Application Assessment</div>
+
+                <div class="d-flex mt-2">
+                    <div class="d-flex flex-column align-items-center">
+                        <div class="circular-progress" style="background: conic-gradient(@BackgroundColor)">
+                            <span class="progress-value">@ProgressValue%</span>
+                        </div>
+                        <div class="font-12-500 mt-1">Assessment</div>
+                    </div>
+
+                    <div class="px-3 text-nowrap">
+                        <div class="px-3 text-nowrap">
+                            <div class="font-12-400"><i class="@GetAssetsmentIcon(ApplicationAssesmentModel.ApplicationDetails) px-2" style="color: @GetApplicationDetailsIconColour(ApplicationAssesmentModel.ApplicationDetails)"></i>Application Details</div>
+                            <div class="font-12-400"><i class="@GetAssetsmentIcon(ApplicationAssesmentModel.Profile) px-2" style="color:@GetApplicationDetailsIconColour(ApplicationAssesmentModel.Profile)"></i>Student Details</div>
+                            <div class="font-12-400"><i class="@GetAssetsmentIcon(ApplicationAssesmentModel.InternalAssesment) px-2" style="color:@GetApplicationDetailsIconColour(ApplicationAssesmentModel.InternalAssesment)"></i>Internal Assessment</div>
+                            <div class="font-12-400"><i class="@GetAssetsmentIcon(ApplicationAssesmentModel.Document) px-2" style="color:@GetApplicationDetailsIconColour(ApplicationAssesmentModel.Document)"></i>Documents</div>
+                            <div class="font-12-400"><i class="@GetAssetsmentIcon(ApplicationAssesmentModel.Consent) px-2" style="color:@GetApplicationDetailsIconColour(ApplicationAssesmentModel.Consent)"></i>Consent</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            @* Application Status card *@
+
+            <div class="status-card bg-teal mt-3">
+                <div>
+                    <div class="text-FFFFFF font-16-700">Application Timeline</div>
+                </div>
+
+                <div class="d-flex mt-2">
+                    <div class="step completed">
+                        <div class="hr-with-text">
+                            <div class="circle"><i class="fa-solid fa-check"></i></div>
+                        </div>
+                        <div class="label">New Application</div>
+                    </div>
+
+                    <div class="step completed">
+                        <div class="hr-with-text">
+                            <div class="circle"><i class="fa-solid fa-check"></i></div>
+                        </div>
+                        <div class="label">Under Assessment</div>
+                    </div>
+                    <div class="step">
+                        <div class="hr-with-text">
+                            <div class="circle"><i class="fa-solid fa-check"></i></div>
+                        </div>
+                        <div class="label">Ready to Apply</div>
+                    </div>
+                    <div class="step">
+                        <div class="hr-with-text">
+                            <div class="circle"><i class="fa-solid fa-check"></i></div>
+                        </div>
+                        <div class="label">Submitted to University</div>
+                    </div>
+                </div>
+
+                <div class="d-flex justify-content-between">
+                    <div>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="align-content-center my-2" @onclick="ToggleStatusDetail">
+                        <button class="button button-dropdown text-teal font-10-400">Details<i class="@CurrentIcon2 p-1 mx-1" /></button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="status-detail-container @(isShowStatusDetail ? "show" : "hide")">
+                <div class="bg-effbfa rounded">
+                    <ul class="timeline">
+                        <li class="timeline-item completed">
+                            <span class="circle"></span>
+                            <span>New Application</span>
+                        </li>
+                        <li class="timeline-item completed">
+                            <span class="circle"></span>
+                            <span>Under Assessment</span>
+                        </li>
+                        <li class="timeline-item">
+                            <span class="circle"></span>
+                            <span>Ready to Apply</span>
+                        </li>
+                        <li class="timeline-item">
+                            <span class="circle"></span>
+                            <span>Submitted to University</span>
+                        </li>
+                        <li class="timeline-item">
+                            <span class="circle"></span>
+                            <span>Application in Process by University</span>
+                        </li>
+                        <li class="timeline-item">
+                            <span class="circle"></span>
+                            <span>Offer Issued</span>
+                        </li>
+                        <li class="timeline-item">
+                            <span class="circle"></span>
+                            <span>Application Deferred</span>
+                        </li>
+                        <li class="timeline-item">
+                            <span class="circle"></span>
+                            <span>CAS Deposit Paid</span>
+                        </li>
+                        <li class="timeline-item">
+                            <span class="circle"></span>
+                            <span>CAS Processing</span>
+                        </li>
+                        <li class="timeline-item">
+                            <span class="circle"></span>
+                            <span>Visa Processing</span>
+                        </li>
+                        <li class="timeline-item">
+                            <span class="circle"></span>
+                            <span>Application Cancelled</span>
+                        </li>
+                        <li class="timeline-item">
+                            <span class="circle"></span>
+                            <span>Application Completed</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            @* Admission Manager *@
+
+            <div class="d-flex flex-column border rounded p-3 mt-3">
+                <div class="font-14-700 pb-1">Admission Manager</div>
+                <div class="d-flex justify-content-between pt-2">
+                    <div class="d-flex col-6">
+                        <img src="/assets/images/icons/icon-consultant.svg" alt="icon-profile">
+                        <div class="px-2">
+                            <div class="font-16-600">@Models.AdmissionManager?.FullName</div>
+                            <div class="font-12-400 text-secondary">CON-1574</div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="d-flex">
+                            <img class="px-2" src="/assets/images/icons/icon-mail-01.svg" alt="icon-mail">
+                            <div class="font-12-400 text-secondary">@Models.AdmissionManager?.Email</div>
+                        </div>
+                        <div class="d-flex">
+                            <img class="px-2" src="/assets/images/icons/icon-phone-01.svg" alt="icon-phone">
+                            <div class="font-12-400 text-secondary mt-1">@Models.AdmissionManager?.PhoneNumber</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            @* Consultant *@
+
+            <div class="d-flex flex-column border rounded p-3 mt-3">
+                <div class="font-14-700 pb-1">Consultant</div>
+                <div class="d-flex justify-content-between pt-2">
+                    <div class="d-flex col-6">
+                        <img src="/assets/images/icons/icon-consultant.svg" alt="icon-profile">
+                        <div class="px-2">
+                            <div class="font-16-600">@Models.Consultant?.FullName</div>
+                            <div class="font-12-400 text-secondary">@Models.Consultant?.viewId</div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="d-flex">
+                            <img class="px-2" src="/assets/images/icons/icon-mail-01.svg" alt="icon-mail">
+                            <div class="font-12-400 text-secondary">@Models.Consultant?.Email</div>
+                        </div>
+                        <div class="d-flex  mt-1">
+                            <img class="px-2" src="/assets/images/icons/icon-phone-01.svg" alt="icon-phone">
+                            <div class="font-12-400 text-secondary">@Models.Consultant?.PhoneNumber</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="d-flex flex-column border rounded p-3 mt-3">
+                <div class="font-14-600 pb-1">Note</div>
+                <div class="justify-content-start align-items-center font-12-400 text-secondary">
+                    empty
+                </div>
+            </div>
+            <hr />
+            <div class="d-flex justify-content-between mt-3">
+                <div class="font-14-600 pb-1">Internal Assessment</div>
+                <i class="fa-solid fa-angle-right"></i>
+            </div>
+            <div class="d-flex justify-content-between mt-3">
+                <div class="font-14-600 pb-1">Statement Of Purpose</div>
+                <i class="fa-solid fa-angle-right"></i>
+            </div>
+            <div class="d-flex justify-content-between mt-3" @onclick="Document">
+                <div class="font-14-600 pb-1">Documents</div>
+                <i class="@CurrentIcon"></i>
+            </div>
+            @if (document)
+            {
+                <div class="row">
+                    @if (DocumentModels != null)
+                    {
+                        @foreach (var item in DocumentModels)
+                        {
+                            @foreach (var document in item.ApplicationDocuments)
+                            {
+                                <div class="col-6 mt-3">
+                                    <div class="card">
+                                        <div class="boundary">
+                                            <div class="d-flex justify-content-between m-2">
+                                                <div class="justify-content-center align-items-center">
+                                                    <img src="assets/images/icons/icon-textfile.svg" />
+                                                    <div class="font-12-500 mt-3">
+                                                        @document.DocumentName
+                                                    </div>
+                                                </div>
+                                                <i class="fa-solid fa-ellipsis-v"></i>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+
+                        }
+                    }
+                    else
+                    {
+                        <p>
+                            No Document found
+                        </p>
+                    }
+                    
+                </div>
+            }
+        </div>
+    </div>
+}
+
+else
+{
+    <p>Loading...</p>
+}

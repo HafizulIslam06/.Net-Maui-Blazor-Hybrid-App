@@ -1,0 +1,129 @@
+﻿/*<-- Slider Section -->*/
+@keyframes slide-in-left {
+    from {
+        transform: translateX(-100%);
+    }
+
+    to {
+        transform: translateX(0);
+    }
+}
+
+@keyframes slide-out-left {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(-100%);
+    }
+}
+
+@keyframes slide-in-right {
+    from {
+        transform: translateX(100%);
+    }
+
+    to {
+        transform: translateX(0);
+    }
+}
+
+@keyframes slide-out-right {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(100%);
+    }
+}
+
+@keyframes slide-in-up {
+    from {
+        transform: translateY(100%);
+    }
+
+    to {
+        transform: translateY(0);
+    }
+}
+
+@keyframes slide-out-down {
+    from {
+        transform: translateY(0);
+    }
+
+    to {
+        transform: translateY(100%);
+    }
+}
+
+.slide-in-left {
+    animation: slide-in-left 0.5s forwards;
+}
+
+.slide-out-left {
+    animation: slide-out-left 0.5s forwards;
+}
+
+.slide-in-right {
+    animation: slide-in-right 0.5s forwards;
+}
+
+.slide-out-right {
+    animation: slide-out-right 0.5s forwards;
+}
+
+.slide-in-up {
+    animation: slide-in-up 0.5s forwards;
+}
+
+.slide-out-down {
+    animation: slide-out-down 0.5s forwards;
+}
+
+
+/* Specific classes for left and right positioning */
+.left {
+    left: 0;
+    width: 70%;
+}
+
+.right {
+    right: 0;
+    width: 75%;
+}
+
+.down {
+    bottom: 0;
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
+}
+
+
+/* Common styles for options containers */
+.options-container {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    top: 0;
+    z-index: 1000;
+    transition: transform 0.5s ease;
+    overflow-y: auto;
+    position: fixed;
+}
+.slider-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+.slider-container-down {
+    height: 85vh;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    z-index: 10;
+    overflow-y: auto;
+}

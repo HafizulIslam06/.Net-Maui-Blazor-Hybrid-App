@@ -1,0 +1,89 @@
+﻿@page "/notifications"
+
+@using Uapp.App.Components.Layout
+@layout ProfileLayout
+
+<div class="slide-bar ">
+    <div class="top-bar py-3">
+        <div class="font-16-600">Notifications</div>
+        <div class="bar-direction">
+            <a href="#" class="mark-all-as">Mark all as read</a>
+            <img class="icon-close" @onclick="NavigateToHome" src="/assets/images/icons/icon-close.svg" alt="Icon Close" />
+        </div>
+    </div>
+
+    <div class="notification py-2 list-group-item-action">
+        <div class="d-flex">
+            <img class="icon-notification" src="/assets/images/icons/icon-building.svg" alt="Icon" />
+            <div class="notification-info px-2">
+                <div class="font-14-700">University relevant Notification</div>
+                <div class="text-secondary">Jan 2, 2023</div>
+            </div>
+        </div>
+        <div class="ellipse ellipse-notification"></div>
+    </div>
+
+    <div class="notification py-2 list-group-item-action">
+        <div class="d-flex">
+            <img class="icon-notification" src="/assets/images/icons/icon-setting.svg" alt="Icon" />
+            <div class="notification-info px-2">
+                <div class="font-14-700">System and settings relevant Notification</div>
+                <div class="text-secondary">Jan 2, 2023</div>
+            </div>
+        </div>
+        <div class="ellipse"></div>
+    </div>
+
+    <div class="notification py-2 list-group-item-action">
+        <div class="d-flex">
+            <img class="icon-notification" src="/assets/images/icons/icon-info.svg" alt="Icon" />
+            <div class="notification-info px-2">
+                <div class="font-14-700">Info relevant Notification</div>
+                <div class="text-secondary">Jan 2, 2023</div>
+            </div>
+        </div>
+        <div class="ellipse"></div>
+    </div>
+
+    <div class="notification py-2 list-group-item-action">
+        <div class="d-flex">
+            <img class="icon-notification" src="/assets/images/icons/icon-bell.svg" alt="Icon" />
+            <div class="notification-info px-2">
+                <div class="font-14-700">Undefine Notification</div>
+                <div class="text-secondary">Jan 2, 2023</div>
+            </div>
+        </div>
+        <div class="ellipse"></div>
+    </div>
+
+    <div class="notification py-2 list-group-item-action">
+        <div class="d-flex">
+            <img class="icon-notification" src="/assets/images/icons/icon-file.svg" alt="Icon" />
+            <div class="notification-info px-2">
+                <div class="font-14-700">Application relevant Notification</div>
+                <div class="text-secondary">Jan 2, 2023</div>
+            </div>
+        </div>
+        <div class="ellipse"></div>
+    </div>
+
+    <div class="notification py-2 list-group-item-action">
+        <div class="d-flex">
+            <img class="icon-notification" src="/assets/images/icons/icon-hat.svg" alt="Icon" />
+            <div class="notification-info px-2">
+                <div class="font-14-700">Course relevant Notification</div>
+                <div class="text-secondary">Jan 2, 2023</div>
+            </div>
+        </div>
+        <div class="ellipse"></div>
+    </div>
+</div>
+
+@code {
+    [Inject] private NavigationManager NavigationManager { get; set; } = null!;
+
+    private void NavigateToHome()
+    {
+        NavigationManager.NavigateTo("home");
+    }
+}

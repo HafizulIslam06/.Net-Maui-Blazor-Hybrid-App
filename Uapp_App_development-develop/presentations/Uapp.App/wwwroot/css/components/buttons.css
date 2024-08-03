@@ -1,0 +1,148 @@
+﻿/* Buttons */
+.button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 0px;
+    border-radius: 999px;
+    text-decoration: none;
+    width: 100%;
+    border: none;
+}
+
+/*Primary button*/
+.button-primary {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+    .button-primary:hover {
+        background-color: #033F3F;
+        color: white;
+    }
+
+/*Secondary button*/
+.button-secondary {
+    border: 1px solid var(--primary-color);
+    color: #045D5E;
+}
+
+    .button-secondary:hover {
+        background-color: var(--primary-color);
+        color: white;
+    }
+
+/*Checked button*/
+.check-btn-group {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 12px;
+    position: relative;
+}
+
+.btn-key-checked {
+    padding: 2px 12px;
+    border-radius: 999px;
+    font-size: 16px;
+    font-weight: 400;
+    position: relative;
+}
+.btn-checked-primary {
+    display: inline-flex; 
+    border: 1px solid; 
+    border-color: #045d5e; 
+    color: var(--primary-color); 
+    background-color: white; 
+}
+    .btn-checked-primary.active {
+        background-color: var(--primary-color);
+        color: white;
+    }
+.btn-checked-notice {
+    border: none;
+    padding: 4px 8px;
+}
+.notice-gray {
+    background-color: #ebebeb;
+    color: #494949;
+}
+.notice-red {
+    border: 1px solid #E93C3C;
+    background-color: #FCE8E9;
+    color: #E93C3C;
+}
+.notice-black {
+    border: 1px solid #495057;
+    background: #FFF;
+}
+.notice-yellow {
+    border: 1px solid #FD8F33;
+    color: #FD8F33;
+    background: #FFF1E6;
+    width: 100%;
+    padding: 8px;
+    font-size:10px;
+    font-weight:500;
+}
+
+
+/*Reset Button*/
+.button-reset {
+    border: 1px solid #7C7C7C;
+    color: #7C7C7C;
+}
+    .button-reset:hover {
+        color: #7C7C7C;
+    }
+
+/*invite button*/
+.button-invite {
+    display:flex;
+    align-items:center;
+    display: inline-block;
+    background-color: #045D5E;
+    color: #FFFFFF;
+    border-radius: 999px;
+    border: none;
+    padding: 8px 10px;
+    text-decoration: none;
+}
+    .button-invite:hover {
+        background-color: #033F3F;
+        color: white;
+    }
+
+/* Search & Apply Navigation Button Group */
+.btn-show {
+    height: 32px;
+    width: 100%;
+    background-color: #EDF2F2;
+    color: #515151;
+    border: 1px solid #045D5E;
+    border-radius: 6px;
+}
+
+    .btn-show::placeholder {
+        font-size: 14px;
+        padding: 5px;
+    }
+
+    .btn-show:focus {
+        outline: none;
+    }
+
+    .btn-show.active {
+        background-color: #045D5E;
+        color: #F8FAFC;
+    }
+
+/* See More */
+.button-Seemore {
+    background-color: #E6EFEF;
+    color: var(--primary-color);
+}
+
+.button-dropdown {
+    padding: 4px 4px 4px 8px;
+}

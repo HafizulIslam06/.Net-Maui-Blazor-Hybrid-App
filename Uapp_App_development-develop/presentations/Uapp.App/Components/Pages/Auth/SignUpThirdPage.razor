@@ -1,0 +1,53 @@
+﻿@page "/signupthirdpage"
+
+@using Uapp.Services.Auth
+@using Uapp.Services.Auth.Models
+@layout AuthLayout
+
+<EditForm Model="@StepThree" OnValidSubmit="SubmitRegistration">
+    <DataAnnotationsValidator />
+    <div class="auth-signin">
+        <div class="text-center">
+            <div class="form-control border-radius-top py-4">
+                <div class="input-section">
+                    <input @bind="StepThree.Password" class="input-field border-radius-999 input-field-primary" placeholder="Password" type="password" />
+                    <img src="/assets/images/icons/icon-lock.svg" class="input-icon" alt="lock Icon" />
+                    <ValidationMessage For="@(() => StepThree.Password)" />
+                </div>
+                <div class="input-section my-2">
+                    <input @bind="StepThree.ConfirmPassword" class="input-field border-radius-999 input-field-primary" placeholder="Confirm Password" type="password" />
+                    <img src="/assets/images/icons/icon-lock.svg" class="input-icon" alt="lock Icon" />
+                    <ValidationMessage For="@(() => StepThree.ConfirmPassword)" />
+                </div>
+                <div class="input-section my-3">
+                    <input @bind="StepThree.InvitationCode" class="input-field border-radius-999 input-field-primary" placeholder="Refer Code" type="text" />
+                </div>
+                <ValidationMessage For="@(() => StepThree.InvitationCode)" />
+
+                <div class="form-group mb-2">
+                    <button type="submit" class="button button-primary" disabled="@IsLoading">
+                        @if (IsLoading)
+                        {
+                            <div class="spinner"></div>
+                        }
+                        else
+                        {
+                            <span>Done</span>
+                        }
+                    </button>
+                </div>
+                <div class="ellipse-group">
+                    <a href="/signupfirstpage">
+                        <div class="ellipse ellipse-secondary"></div>
+                    </a>
+                    <a href="/signupsecondpage">
+                        <div class="ellipse ellipse-secondary"></div>
+                    </a>
+                    <a href="/signupthirdpage">
+                        <div class="ellipse ellipse-primary"></div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</EditForm>

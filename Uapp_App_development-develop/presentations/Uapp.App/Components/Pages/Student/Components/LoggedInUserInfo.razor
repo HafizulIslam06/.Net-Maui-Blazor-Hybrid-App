@@ -1,0 +1,15 @@
+﻿@using Uapp.Shared.Constants
+@using Uapp.Shared.Responses
+<div class="user-info py-2" @onclick="OptionVisibility">
+    <img src="@string.Concat(ApiConstants.Domain,UserInfo.DisplayImage)" alt="Icon Profile" style="width:60px; border-radius:999px;"/>
+    <div class="px-2 text-center">
+        <div class="font-16-700">@UserInfo.DisplayName</div>
+        <div class="font-12-400 text-secondary">@UserInfo.UserViewId</div>
+    </div>
+</div>
+@code {
+    [Parameter]
+    public Action OptionVisibility { get; set; }
+    [Parameter]
+    public LoginResponse UserInfo { get; set; }
+}

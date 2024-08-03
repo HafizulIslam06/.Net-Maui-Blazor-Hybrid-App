@@ -1,0 +1,20 @@
+﻿/* Import other CSS files */
+@import url('variables.css');
+@import url('color.css');
+@import url('font.css');
+@import url('layout.css');
+@import url('common.css');
+@import url('profile.css');
+@import url('components/cards.css');
+@import url('components/buttons.css');
+@import url('components/slider.css');
+@import url('components/inputField.css');
+@import url('btn.css');
+@import url('components/spinner.css');
+
+/* base.css */
+html, body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}

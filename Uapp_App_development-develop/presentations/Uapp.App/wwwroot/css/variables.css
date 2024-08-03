@@ -1,0 +1,46 @@
+﻿:root {
+    /* ===== Colors ===== */
+    --primary-color: #045D5E;
+    /* Background Colors */
+    --bg-f4f6f6: #F4F6F6;
+    --bg-fff: #FFF;
+    --bg-455154: #455154;
+    --bg-edf2f2: #EDF2F2;
+    --bg-edf2f2: #EDEDF3;
+    --bg-d4dada: #D4DADA;
+    --bg-fafafb: #FAFAFB;
+    --bg-effbfa: #EFFBFA;
+    --bg-fcf3f3f: #FCF3F3;
+    --bg-FCF4E9: #FCF4E9;
+    --bg-E9EDFC: #E9EDFC;
+    --bg-fcf3f3: #FCF3F3;
+    --bg-24A1CD4D: #24A1CD4D;
+    --bg-F876754D: #F876754D;
+    --bg-5B9A8B4D: #5B9A8B4D;
+    --bg-FFBA084D: #FFBA084D;
+    --bg-70E0004D: #70E0004D;
+    --bg-9E6F214D: #9E6F214D;
+    --bg-38FFE4: #38FFE4;
+    /* Text Colors */
+    --text-515151: #515151;
+    --text-252525: #252525;
+    --text-000000: #000000;
+    --text-455154: #455154;
+    --text-969fa2: #969FA2;
+    --text-404F4E: #404F4E;
+    --text-495057: #495057;
+    --text-FFFFFF: #FFFFFF;
+    --text-38FFE4: #38FFE4;
+    /* ===== Font Sizes and Weights ===== */
+    --font-size-10: 10px;
+    --font-size-12: 12px;
+    --font-size-14: 14px;
+    --font-size-16: 16px;
+    --font-size-22: 22px;
+    --font-size-24: 24px;
+    --font-size-30: 30px;
+    --font-weight-400: 400;
+    --font-weight-500: 500;
+    --font-weight-600: 600;
+    --font-weight-700: 700;
+}

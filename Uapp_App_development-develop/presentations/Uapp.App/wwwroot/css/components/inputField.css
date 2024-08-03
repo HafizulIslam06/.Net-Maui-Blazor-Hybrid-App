@@ -1,0 +1,107 @@
+﻿/*Input Field*/
+.input-field {
+    display: block;
+    width: 100%;
+    padding: 8px 24px;
+    border: 1px solid #ced4da;
+}
+    .input-field:focus {
+        outline: none;
+        border-color: none;
+        color: inherit;
+    }
+
+.input-section {
+    position: relative;
+}
+    .input-section .input-field-primary {
+        Padding:10px, 40px, 10px, 40px;
+        border: 1px solid var(--primary-color);
+    }
+
+        .input-section .input-field-primary::placeholder {
+            color: var(--primary-color);
+        }
+    .input-section .input-field-primary:focus {
+        outline: none;
+        border-color: var(--primary-color);
+        color: inherit;
+    }
+.input-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+.input-icon {
+    position: absolute;
+    top: 50%;
+    right: 6%;
+    transform: translateY(-50%);
+    width: 16px;
+    height: 16px;
+    pointer-events: none;
+}
+
+/*who have 2 input feild */
+.defaul_input-section {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.firstname-control {
+    width: 95%;
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 24px;
+    position: relative;
+    background-color: #ffffff;
+    border-radius: 999px;
+    border: 1px solid;
+    border-color: #045D5E;
+    border-top-left-radius: 0px !important;
+    border-bottom-left-radius: 0px !important;
+    box-shadow: inset;
+    /*border-left: 0px solid;*/
+}
+
+.nametittle-control {
+    width: auto;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0px 11px 16px;
+    position: relative;
+    color: #045D5E;
+    font-size: 15px;
+    background-color: #ffffff;
+    border-radius: 999px;
+    border: 1px solid #045D5E;
+    border-color: #045D5E;
+    border-top-right-radius: 0px !important;
+    border-bottom-right-radius: 0px !important;
+    box-shadow: inset;
+    border-right: 0px solid;
+    box-shadow: inset;
+}
+
+    .nametittle-control:focus {
+        outline: none;
+        border-color: var(--primary-color);
+        color: inherit;
+    }
+
+.firstname-control::placeholder {
+    color: var(--primary-color);
+}
+
+.firstname-control:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    color: inherit;
+}
+
+/* Remove focus outline for the textarea */
+#message {
+    outline: none;
+    padding: 10px;
+}

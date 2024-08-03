@@ -1,0 +1,69 @@
+﻿@page "/referfriend"
+
+@using Uapp.App.Components.Layout
+@layout ProfileLayout
+
+<!-- Top Nav -->
+<div class="position-sticky top-0" style="z-index:1; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+    <div class="boundary">
+        <div class="d-flex justify-content-between bg-fff py-3 pt-3">
+            <img @onclick="NavigateToHome" src="/assets/images/icons/icon-arrowBack.svg" alt="Icon-arrowBack" />
+            <div class="font-22-600">Refer friend</div>
+            <img src="/assets/images/icons/icon-moreOption.svg" alt="icon-moreOption" />
+        </div>
+    </div>
+</div>
+
+<div class="bg-fafafb vh-100">
+    <div class="boundary">
+        <div class="text-center py-4">
+            <img src="/assets/images/icons/referfriend.svg" alt="referfriend" />
+        </div>
+
+        <div class="my-3">
+            <div class="font-14-500 my-2"><strong>Enter your friend's email address</strong></div>
+            <input type="email" class="input-field" placeholder="hello@email.com">
+            <div class="text-center my-4">
+                <a href="referthanks" class="button-mid button-invite">Send Invitation</a>
+            </div>
+        </div>
+
+        <div class="my-3">
+            <div class="hr-with-text text-secondary">
+                <span>Or</span>
+            </div>
+        </div>
+
+        <div class="d-flex flex-column text-center">
+            <div class="font-14-500 text-secondary my-3">Share link with your friends</div>
+            <div class="input-section mt-2 text-start my-2">
+                <div class="input-field text-nowrap border-radius-999 bg-edf2f2 text-teal" id="link">
+                    <div class="truncated-text" style="max-width:40ch;">https://lead.uapp.uk/form/sudhanshu</div>
+                    <img src="/assets/images/icons/icon-copy.svg" class="round-input-icon bg-f4f6f6" alt="copy Icon">
+                </div>
+                
+            </div>
+
+            <div class="my-4">
+                <img src="/assets/images/icons/icon-email.svg" alt="icon email" />
+                <img src="/assets/images/icons/icon-linkedin.svg" alt="icon linkedin" />
+                <img src="/assets/images/icons/icon-facebook.svg" alt="icon facebook" />
+                <img src="/assets/images/icons/icon-massanger.svg" alt="icon massanger" />
+                <img src="/assets/images/icons/icon-whatsapp.svg" alt="icon whatsapp" />
+                <img src="/assets/images/icons/icon-instagram.svg" alt="icon inagram" />
+                <img src="/assets/images/icons/icon-twiter.svg" alt="icon twiter" />
+            </div>
+            <div class="font-12-400 text-secondary">We respect your privacy and your friend's privacy. Their information will only be used to send this invitation.</div>
+        </div>
+    </div>
+</div>
+
+@code {
+    [Inject] private NavigationManager NavigationManager { get; set; } = null!;
+
+    // Navigations
+    private void NavigateToHome()
+    {
+        NavigationManager.NavigateTo("home");
+    }
+}

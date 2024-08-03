@@ -1,0 +1,433 @@
+﻿@page "/search&apply"
+
+@using Uapp.App.Components.Layout
+@layout ProfileLayout
+
+@* Search & Apply Header *@
+<div class="sticky-top" style="z-index:5;">
+    <div class="bg-white boundary">
+        <div class="card position-sticky top-0 border-0 p-3">
+            <div class="justify-content-center align-items-center">
+                <div class="d-flex justify-content-center align-items-center">
+                    <div class="search-input-wrapper2">
+                        <img src="/assets/images/icons/icon-search.svg" alt="search icon" class="search-icon px-1">
+                        <input type="text" placeholder="Search for Courses & Universities" class="search-bar2" />
+                    </div>
+                    <div class="bell px-2">
+                        <img src="/assets/images/icons/icon-more.svg" @onclick="ShowSearchOptions" alt="Alternate Text" />
+                    </div>
+                </div>
+                <div class="d-flex py-3">
+                    <button class="btn-show @((course) ? "active" : "") p-0 m-0" style="border-top-right-radius:0px; border-bottom-right-radius:0px;" @onclick="ToggleCourse">
+                        Courses
+                    </button>
+                    <button class="btn-show @((!course) ? "active" : "") p-0 m-0" style="border-top-left-radius:0px; border-bottom-left-radius:0px;" @onclick="ToggleUniversity">
+                        University
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@* Search Bar Click *@
+@if (isSearchOptionVisible)
+{
+    <div class="overlay @overlayClass" @onclick="HideSearchOptions"></div>
+    <div class="boundary options-container right @transitionClass">
+        <div class="d-flex justify-content-between border-bottom py-2">
+            <div class="d-flex my-1">
+                <img class="icon" src="/assets/images/icons/icon-filter.svg" alt="Icon Filter" />
+                <div class="px-2 font-16-600">Filter</div>
+            </div>
+
+            <img @onclick="HideSearchOptions" class="icon" src="/assets/images/icons/icon-close.svg" alt="Icon Close" />
+        </div>
+
+        @* Search course *@
+        <div class="my-3">
+            <div class="font-16-600">Search Course</div>
+            <input type="text" class="input-field border-radius-999 my-2" placeholder="Course name">
+            <div>
+                <select class="form-select border-radius-999 text-secondary" aria-label="Default select example">
+                    <option selected>Select University</option>
+                </select>
+            </div>
+        </div>
+
+        @* Filter university *@
+        <div class="my-3">
+            <div class="font-16-600">Filter University</div>
+            <div class="my-2">
+                <select class="form-select border-radius-999 text-secondary" aria-label="Default select example">
+                    <option selected>Select University Type</option>
+                </select>
+            </div>
+            <div class="my-2">
+                <select class="form-select border-radius-999 text-secondary" aria-label="Default select example">
+                    <option selected>Select Country</option>
+                </select>
+            </div>
+            <div class="my-2">
+                <select class="form-select border-radius-999 text-secondary" aria-label="Default select example">
+                    <option selected>Select City/Location</option>
+                </select>
+            </div>
+            <div class="my-2">
+                <select class="form-select border-radius-999 text-secondary" aria-label="Default select example">
+                    <option selected>Select University Campus</option>
+                </select>
+            </div>
+        </div>
+
+        @* Filter Program *@
+        <div class="my-3">
+            <div class="font-16-600">Filter Program</div>
+            <div class="my-2">
+                <select class="form-select border-radius-999 text-secondary" aria-label="Default select example">
+                    <option selected>Select University Type</option>
+                </select>
+            </div>
+            <div class="my-2">
+                <select class="form-select border-radius-999 text-secondary" aria-label="Default select example">
+                    <option selected>Select Country</option>
+                </select>
+            </div>
+            <div class="my-2">
+                <select class="form-select border-radius-999 text-secondary" aria-label="Default select example">
+                    <option selected>Select City/Location</option>
+                </select>
+            </div>
+            <div class="my-2">
+                <select class="form-select border-radius-999 text-secondary" aria-label="Default select example">
+                    <option selected>Select University Campus</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="mb-5 pb-2">
+            <a href="/signupthirdpage" class="button button-primary my-2">Done</a>
+            <a href="/signupthirdpage" class="button button-reset">Reset</a>
+        </div>
+    </div>
+}
+
+@* Search & Apply Body *@
+<div class="search_and_apply-bg bg-edf2f2 py-4">
+    <div class="boundary">
+        @if (course)
+        {
+            <div class="application-card bg-fff d-flex flex-column">
+                <div class="font-12-400 text-secondary align-content-center d-flex pb-2">
+                    <div>Foundation programme</div>
+                    <div class="px-2">
+                        <img src="assets/demo/Solid.svg" />
+                    </div>
+                    <div>4 Years</div>
+                </div>
+                <div class="pb-1">
+                    <div class="font-16-700 text-252525">BEng Computer Engineering</div>
+                </div>
+                <div class="d-flex">
+                    <img src="assets/demo/image.svg" />
+                    <div class="font-12-400 text-secondary px-1">Anglia Ruskin University</div>
+                </div>
+                <div class="d-flex py-2 font-12-400">
+                    <img src="assets/images/icons/location.svg" />
+                    <div class="px-2">London</div>
+                    <img src="assets/images/icons/calender.svg" />
+                    <div class="px-2 text-secondary">January 2024</div>
+                </div>
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <div class="font-14-600">£79.00(GBP)</div>
+                        <div class="font-12-500 text-teal py-1">Free to Apply</div>
+                    </div>
+                    <div>
+                        <a class="button button-primary py-2 px-4 font-12-500" @onclick="ShowApply">Apply Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="application-card bg-fff d-flex flex-column">
+                <div class="font-12-400 text-secondary align-content-center d-flex pb-2">
+                    <div>Foundation programme</div>
+                    <div class="px-2">
+                        <img src="assets/demo/Solid.svg" />
+                    </div>
+                    <div>4 Years</div>
+                </div>
+                <div class="pb-1">
+                    <div class="font-16-700 text-252525">BEng Computer Engineering</div>
+                </div>
+                <div class="d-flex">
+                    <img src="assets/demo/image.svg" />
+                    <div class="font-12-400 text-secondary px-1">Anglia Ruskin University</div>
+                </div>
+                <div class="d-flex py-2 font-12-400">
+                    <img src="assets/images/icons/location.svg" />
+                    <div class="px-2">London</div>
+                    <img src="assets/images/icons/calender.svg" />
+                    <div class="px-2 text-secondary">January 2024</div>
+                </div>
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <div class="font-14-600">£79.00(GBP)</div>
+                        <div class="font-12-500 text-teal py-1">Free to Apply</div>
+                    </div>
+                    <div>
+                        <a class="button button-primary py-2 px-4 font-12-500" @onclick="ShowApply">Apply Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="application-card bg-fff d-flex flex-column">
+                <div class="font-12-400 text-secondary align-content-center d-flex pb-2">
+                    <div>Foundation programme</div>
+                    <div class="px-2">
+                        <img src="assets/demo/Solid.svg" />
+                    </div>
+                    <div>4 Years</div>
+                </div>
+                <div class="pb-1">
+                    <div class="font-16-700 text-252525">BEng Computer Engineering</div>
+                </div>
+                <div class="d-flex">
+                    <img src="assets/demo/image.svg" />
+                    <div class="font-12-400 text-secondary px-1">Anglia Ruskin University</div>
+                </div>
+                <div class="d-flex py-2 font-12-400">
+                    <img src="assets/images/icons/location.svg" />
+                    <div class="px-2">London</div>
+                    <img src="assets/images/icons/calender.svg" />
+                    <div class="px-2 text-secondary">January 2024</div>
+                </div>
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <div class="font-14-600">£79.00(GBP)</div>
+                        <div class="font-12-500 text-teal py-1">Free to Apply</div>
+                    </div>
+                    <div>
+                        <a class="button button-primary py-2 px-4 font-12-500" @onclick="ShowApply">Apply Now</a>
+                    </div>
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="application-card bg-fff">
+                <div class="d-flex py-1">
+                    <img class="university-img" src="assets/demo/universitylogo.svg" alt="University Logo" />
+                    <div class="px-2">
+                        <div class="font-16-600 text-252525">De Montfort University Leicester</div>
+                        <div class="d-flex font-12-400 text-secondary">
+                            <img src="assets/images/icons/location.svg" alt="Location Icon" style="padding-right:5px;" />
+                            <div>Bank House, Faulkner St, Manchester, UK</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="pt-2">
+                    <div class="d-flex flex-column">
+                        <div class="d-flex align-items-center py-1">
+                            <img src="assets/images/icons/campus.svg" alt="Campus Icon" />
+                            <div>4 Campuses</div>
+                        </div>
+                        <div class="d-flex justify-content-between py-1">
+                            <div class="d-flex align-items-center">
+                                <img src="assets/images/icons/hat.svg" alt="Courses Icon" />
+                                <div>12 Courses</div>
+                            </div>
+                            <div>
+                                <div class="font-12-500 text-secondary">Oxford International</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="application-card bg-fff">
+                <div class="d-flex py-1">
+                    <img class="university-img" src="assets/demo/universitylogo.svg" alt="University Logo" />
+                    <div class="px-2">
+                        <div class="font-16-600 text-252525">De Montfort University Leicester</div>
+                        <div class="d-flex font-12-400 text-secondary">
+                            <img src="assets/images/icons/location.svg" alt="Location Icon" style="padding-right:5px;" />
+                            <div>Bank House, Faulkner St, Manchester, UK</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="pt-2">
+                    <div class="d-flex flex-column">
+                        <div class="d-flex align-items-center py-1">
+                            <img src="assets/images/icons/campus.svg" alt="Campus Icon" />
+                            <div>4 Campuses</div>
+                        </div>
+                        <div class="d-flex justify-content-between py-1">
+                            <div class="d-flex align-items-center">
+                                <img src="assets/images/icons/hat.svg" alt="Courses Icon" />
+                                <div>12 Courses</div>
+                            </div>
+                            <div>
+                                <div class="font-12-500 text-secondary">Oxford International</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+
+
+@if (isApplyVisible)
+{
+    <div class="overlay @overlayClass" @onclick="HideApply"></div>
+    <div class="slider-container-down @transitionClass">
+        <div class="boundary position-static options-container down">
+            <div class="font-22-600 py-4 text-center">Apply Course</div>
+            <div class="mb-4">
+                <div>
+                    <div class="font-16-600">BSc(Hons) Electrical Engineering</div>
+                    <div class="font-12-400 py-2 text-secondary">Anglia Ruskin University ARU</div>
+                </div>
+                <div class="py-3">
+                    <div class="pb-2 font-14-500">Select Student</div>
+                    <div>
+                        <select class="form-select text-secondary" aria-label="Default select example">
+                            <option selected>Select Student</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="check-btn-group py-2">
+                    <input type="button" name="MoiAccepetd" value="MOI Accepted" class="btn-key-checked btn-checked-notice notice-gray" />
+                    <input type="button" name="Available" value="English Waiver Available" class="btn-key-checked btn-checked-notice notice-gray" />
+                </div>
+            </div>
+
+
+            <div class="bg-FCF4E9 rounded-3 p-3 mb-3">
+                <div class="font-14-600">Admission Requirements</div>
+                <div class="font-12-400 text-secondary">
+                    <div><i class="fa-solid fa-check" style="color:#079455;"></i><span class="px-2">Previous Education: 3 Years Bachelor Degree</span></div>
+                    <div><i class="fa-solid fa-check" style="color:#079455;"></i><span class="px-2">Results: 50% Marks</span></div>
+                    <div><i class="fa-solid fa-times" style="color:#D92D20;"></i><span class="px-2">Test Score: 7.5 Overall IELTS score and 5.5 each band or Equivalent</span> </div>
+                    <div><i class="fa-solid fa-times" style="color:#D92D20;"></i><span class="px-2">GRE: 600  (add the Minimum individual score)</span></div>
+                    <div><i class="fa-solid fa-times" style="color:#D92D20;"></i><span class="px-2">GMAT: 700</span></div>
+                </div>
+            </div>
+            <div class="bg-E9EDFC rounded-3 p-3 my-2">
+                <div class="font-14-600">Student Qualification</div>
+                <div class="font-12-400 text-secondary">
+                    <div><i class="fa-solid fa-circle" style="font-size: 6px;"></i><span class="px-2">Highest Education Level : 3 years bachelor Degree</span></div>
+                    <div><i class="fa-solid fa-circle" style="font-size: 6px;"></i><span class="px-2">Result : 50%</span></div>
+                    <div><i class="fa-solid fa-circle" style="font-size: 6px" ;></i><span class="px-2">ELT Score: IELTS 7.5  Or IELTS Equivalent 6.5 (Duolingo)</span> </div>
+                </div>
+            </div>
+
+            <div class="my-3">
+                <input type="button" name="notEligible" value="You are not eligible to apply" class="btn-key-checked btn-checked-notice notice-red" />
+            </div>
+
+            <div class="mb-2">
+                <div class="font-14-600 my-2">Where do you want to study?</div>
+                <div class="check-btn-group">
+                    <input type="button" name="MoiAccepetd" value="Main campus" class="btn-key-checked btn-checked-notice notice-black" />
+                    <input type="button" name="Available" value="Wroclaw" class="btn-key-checked btn-checked-notice notice-black" />
+                    <input type="button" name="Available" value="Manchester" class="btn-key-checked btn-checked-notice notice-black" />
+                </div>
+            </div>
+            <div class="my-2">
+                <div class="font-14-600 my-2">When do you want to Start?</div>
+                <div class="check-btn-group">
+                    <input type="button" name="MoiAccepetd" value="December 2023" class="btn-key-checked btn-checked-notice notice-black" />
+                    <input type="button" name="Available" value="January 2024" class="btn-key-checked btn-checked-notice notice-black" />
+                </div>
+            </div>
+            <div class="my-2">
+                <div class="font-14-600 my-2">Delivery pattern</div>
+                <div class="check-btn-group">
+                    <input type="button" name="MoiAccepetd" value="Standard" class="btn-key-checked btn-checked-notice notice-black" />
+                    <input type="button" name="Available" value="Evening" class="btn-key-checked btn-checked-notice notice-black" />
+                </div>
+            </div>
+
+            <div class="my-3">
+                <label class="font-14-600 py-2">Additional message</label>
+                <textarea id="message" name="message" rows="3" style="width:100%;" class="rounded-3" placeholder="write here"></textarea>
+            </div>
+
+            <div class="font-16-600 mb-3">Application Fee : £50</div>
+            <div class="notice-yellow rounded-3 my-2">You Can apply maximum 3 Applications at a Time for free.</div>
+            <div class="my-3 d-flex align-items-center">
+                <input type="checkbox" id="apply" name="apply" value="apply">
+                <label class="font-14-700 px-1">Are you sure want to apply this program?</label>
+            </div>
+        </div>
+        <div class="card bg-white position-sticky bottom-0 py-4 boundary">
+            <a class="button button-primary">Apply</a>
+        </div>
+    </div>
+}
+<!-- Bottom Navbar -->
+    <NavbarBottom />
+
+
+@code {
+    private bool course = true;
+    private bool isSearchOptionVisible;
+    private bool isApplyVisible;
+    private string overlayClass = "";
+    private string transitionClass = "";
+
+    [Inject] private NavigationManager NavigationManager { get; set; } = null!;
+
+    private void ToggleCourse()
+    {
+        course = true;
+    }
+
+    private void ToggleUniversity()
+    {
+        course = false;
+    }
+
+    // search filter
+
+    private void ShowSearchOptions()
+    {
+        transitionClass = "slide-in-right";
+        isSearchOptionVisible = true;
+        overlayClass = "show";
+        StateHasChanged();
+    }
+    private async Task HideSearchOptions()
+    {
+        transitionClass = "slide-out-right";
+        StateHasChanged();
+        await Task.Delay(500); // Match the animation duration
+        isSearchOptionVisible = false;
+        overlayClass = "";
+        StateHasChanged();
+    }
+
+    // Show Apply Options
+    private void ShowApply()
+    {
+        isApplyVisible = true;
+        transitionClass = "slide-in-up";
+        overlayClass = "show";
+        StateHasChanged();
+    }
+
+    private async Task HideApply()
+    {
+        transitionClass = "slide-out-down";
+        StateHasChanged();
+        await Task.Delay(500);
+        isApplyVisible = false;
+        overlayClass = "";
+        StateHasChanged();
+    }
+}

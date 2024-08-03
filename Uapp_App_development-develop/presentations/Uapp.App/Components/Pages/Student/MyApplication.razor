@@ -1,0 +1,66 @@
+﻿@page "/applications"
+
+@using Uapp.App.Components.Layout
+@layout ProfileLayout
+<Content>
+    <!-- Top Nav -->
+    <div class="position-sticky top-0" style="z-index:1; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+        <div class="boundary bs-popover-bottom">
+            <div class="d-flex justify-content-between bg-fff py-3 pt-3">
+                <img @onclick="NavigateToHome" src="/assets/images/icons/icon-arrowBack.svg" alt="Icon-arrowBack" />
+                <div class="font-22-600">My Applications</div>
+                <div></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="py-2 pb-4 pt-2">
+        <div class="boundary">
+            @foreach (var item in Models)
+            {
+                <div class="application-card mt-2 @GetCardClass(item.ApplicationStatusId)" @onclick="() => NavigateToDetails(item.Id)">
+                    <div class="d-flex justify-content-between">
+                        <div class="font-12-500">APP ID <strong>@item.ApplicationViewId</strong></div>
+
+                        <div class="font-12-500 text-secondary">@item.ApplicationDate.ToString("d MMMM yyyy")</div>
+                    </div>
+                    <div class="py-2">
+                        <div class="font-14-700">@item.SubjectName</div>
+                    </div>
+                    <div class="font-12-400 text-secondary py-1 m-0">
+                        <div class="d-flex align-items-center">
+                            @* <div>@item.CampusName</div>
+                            <i class="fa-solid fa-circle" style="font-size:4px; padding:5px;"></i>
+
+                            <div>@item.EnrollmentStatusName</div>
+                            <i class="fa-solid fa-circle" style="font-size:4px; padding:5px;"></i> *@
+
+                            <div>@item.IntakeName</div>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-between font-12-500">
+                        <div>
+                            <img src="assets/images/icons/bedforshire.svg" />
+                        </div>
+                        <div class="px-1">
+                            <div class="mb-0 text-nowrap truncated-text" style="max-width:20ch;">
+                                @item.UniversityName
+                            </div>
+                            <p class="mb-0 text-secondary">
+                                Campus: @item.CampusName
+                            </p>
+                        </div>
+                        <div>
+                            <button class="status @GetstausClass(item.ApplicationStatusId) truncated-text" style="max-width:18ch;">
+                                @item.ApplicationStatusName
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</Content>
+<!-- Bottom Navbar -->
+<NavbarBottom />
+

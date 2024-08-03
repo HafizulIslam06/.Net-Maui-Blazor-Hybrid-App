@@ -1,0 +1,197 @@
+﻿/*<-- Component Card -->*/
+.component {
+    width: 100%;
+    padding: 0px 5%;
+    margin-top: 5px;
+}
+
+    .component .component-header {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+    }
+
+    .component .component-section {
+        display: flex;
+        justify-content: flex-start;
+        gap: 10px;
+        overflow-x: auto;
+        padding-bottom: 10px;
+        scroll-snap-type: x mandatory;
+    }
+
+        .component .component-section .component-card {
+            display: flex;
+            flex-direction: column;
+            border: 0.3px solid #394c551f;
+            border-radius: 12px;
+            padding: 12px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            scroll-snap-align: start;
+            flex-grow: 1;
+        }
+
+/*<-- Destination Card -->*/
+.destination-card {
+    align-items: center;
+    flex-shrink: 0;
+    width: 120px;
+}
+
+    .destination-card img {
+        width: 64px;
+        height: 64px;
+    }
+
+    .destination-card .destination-name {
+        text-align: center;
+        margin-top: 6px;
+    }
+
+/*<-- course-recommendation Card -->*/
+.course-card {
+    align-items: flex-start;
+    flex-shrink: 0;
+    width: 165px;
+}
+
+    .course-card .course-title {
+        width: 100%;
+        margin-bottom: 5px;
+    }
+
+        .course-card .course-title .course-details {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+    .course-card .fee {
+        margin-top: auto;
+    }
+
+/*<-- University Card -->*/
+.university-card {
+    align-items: flex-start;
+    flex-grow: 1;
+    width: 165px;
+    flex-shrink: 0;
+}
+
+    .university-card .university-name {
+        display: inline-block;
+    }
+
+/*<-- My Application Card -->*/
+.application-card {
+    padding: 18px;
+    border: 1px solid #394D551F;
+    margin-bottom: 15px;
+    border-radius: 12px;    
+}
+
+    /*.application-card img {
+        width: 50px;
+    }*/
+    .application-card .university-img {
+        background-color: #F8FAFC;
+        border-radius: 999px;
+        width: 32px;
+        height: 32px;
+    }
+
+.card-dashboard {
+    display: flex;
+    padding: 12px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    flex: 1 0 0;
+    align-self: stretch;
+}
+
+
+/*status card*/
+.status-card {
+    border-radius: 12px;
+    padding: 12px;
+}
+/*progress bar*/
+.step {
+    text-align: center;
+    flex: 1;
+}
+
+    .step .circle {
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background-color: white;
+        color: #045D5E;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto;
+        font-weight: bold;
+    }
+
+    .step .label {
+        margin-top: 2px;
+        color: white;
+        font-size: 8px;
+    }
+
+    .step.completed .circle {
+        background-color: var(--bg-38FFE4);
+    }
+
+/* Slide down/up animation */
+.status-detail-container {
+    overflow: hidden;
+    transition: max-height 0.5s ease, opacity 0.5s ease;
+    max-height: 0;
+    opacity: 0;
+}
+
+    .status-detail-container.show {
+        max-height: 490px; /* Adjust according to the content height */
+        opacity: 1;
+    }
+
+.timeline {
+    position: relative;
+    padding: 20px 0;
+    list-style: none;
+}
+
+    .timeline:before {
+        content: '';
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 32px;
+        width: 0.25px;
+        background-color: gray;
+    }
+
+.timeline-item {
+    /* position: relative; */
+    margin-bottom: 15px;
+    padding-left: 50px;
+    display: flex;
+    align-items: center;
+}
+
+    .timeline-item .circle {
+        position: absolute;
+        left: 25px;
+        width: 15px;
+        height: 15px;
+        border-radius: 50%;
+        background: #FFF;
+        border: 1px solid #045D5E;
+    }
+
+    .timeline-item.completed .circle {
+        background: var(--bg-38FFE4);
+    }

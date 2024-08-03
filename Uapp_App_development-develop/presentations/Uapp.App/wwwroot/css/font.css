@@ -1,0 +1,66 @@
+﻿/* Font size and weight classes */
+.font-10-400 {
+    font-size: var(--font-size-10);
+    font-weight: var(--font-weight-400);
+}
+
+.font-12-400 {
+    font-size: var(--font-size-12);
+    font-weight: var(--font-weight-400);
+}
+.font-12-500 {
+    font-size: var(--font-size-12);
+    font-weight: var(--font-weight-500);
+}
+
+.font-12-600 {
+    font-size: var(--font-size-12);
+    font-weight: var(--font-weight-600);
+}
+
+.font-12-700 {
+    font-size: var(--font-size-12);
+    font-weight: var(--font-weight-700);
+}
+
+.font-14-500 {
+    font-size: var(--font-size-14);
+    font-weight: var(--font-weight-500);
+}
+.font-14-600 {
+    font-size: var(--font-size-14);
+    font-weight: var(--font-weight-600);
+}
+
+.font-14-700 {
+    font-size: var(--font-size-14);
+    font-weight: var(--font-weight-700);
+}
+
+.font-16-400 {
+    font-size: var(--font-size-16);
+    font-weight: var(--font-weight-400);
+}
+
+.font-16-600 {
+    font-size: var(--font-size-16);
+    font-weight: var(--font-weight-600);
+}
+
+.font-16-700 {
+    font-size: var(--font-size-16);
+    font-weight: var(--font-weight-700);
+}
+
+.font-22-600 {
+    font-size: var(--font-size-22);
+    font-weight: var(--font-weight-600);
+}
+.font-24-600 {
+    font-size: var(--font-size-24);
+    font-weight: var(--font-weight-600);
+}
+.font-30-700 {
+    font-size: var(--font-size-30);
+    font-weight: var(--font-weight-700);
+}

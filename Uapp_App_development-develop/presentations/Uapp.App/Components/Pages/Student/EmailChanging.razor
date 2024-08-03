@@ -1,0 +1,71 @@
+﻿@page "/emailchange"
+
+@using Uapp.App.Components.Layout
+@layout ProfileLayout
+
+<div class="boundary">
+    <!-- Top Nav -->
+    <div class="d-flex justify-content-between py-3">
+        <img @onclick="NavigateToHome" src="/assets/images/icons/icon-arrowBack.svg" alt="Icon-arrowBack" />
+        <div class="font-22-600">Profile</div>
+        <img src="/assets/images/icons/icon-moreOption.svg" alt="icon-moreOption" />
+    </div>
+
+    <!-- Profile Info-->
+    <div class="profile">
+        <div class="cover-pic">
+            <img src="/assets/images/icons/icon-cover-pic.svg" alt="icon-coverPhoto">
+        </div>
+
+        <div class="profile-wrapper d-flex flex-column">
+            <img src="/assets/images/icons/icon-profile.svg" alt="icon-profile">
+            <div class="d-flex flex-column">
+                <div class="font-16-600">Mr Jhon</div>
+                <div class="font-12-400 text-secondary">CON-1574</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Email changing Info-->
+    <div>
+        <div class="d-flex flex-column my-4">
+            <div class="font-14-500 fw-bold">Change Email</div>
+            <div class="font-12-400 text-secondary">
+                By changing email, you will change the primary email with the 
+                new email address. All notification and will be send to your 
+                new email.
+            </div>
+        </div>
+        <div class="my-2">
+            <div>
+                <div class="font-14-500 fw-bold">New Email</div>
+                <input type="text" class="input-field my-2" placeholder="New Email">
+            </div>
+            <div>
+                <div class="font-14-500 fw-bold">Old Password</div>
+                <input type="text" class="input-field my-2" placeholder="Old Password">
+            </div>
+            <div>
+                <div class="font-14-500 fw-bold">New Password</div>
+                <input type="text" class="input-field my-2" placeholder="New Password">
+            </div>
+            <div>
+                <div class="font-14-500 fw-bold">Confirm New password</div>
+                <input type="text" class="input-field my-2" placeholder="Confirm New password">
+            </div>
+        </div>        
+        <div>
+            <a href="#" class="button button-signin my-2">Update</a>
+        </div>
+    </div>
+</div>
+
+@code {
+    [Inject] private NavigationManager NavigationManager { set; get; } = null!;
+
+    // Navigations
+    private void NavigateToHome()
+    {
+        NavigationManager.NavigateTo("/");
+    }
+}

@@ -1,0 +1,257 @@
+﻿@page "/affiliateHome"
+
+@using Uapp.App.Components.Layout
+@layout ProfileLayout
+
+<style>
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    th, td {
+        border: 0.5px solid #D0D5DD;
+        padding: 8px;
+        text-align: left;
+    }
+</style>
+<!-- Top Bar-->
+<div class="boundary border-radius-bottom bg-f4f6f6 py-1">
+    <div class="user">
+        @* User Option *@
+        <div class="user-info">
+            <img @onclick="ShowOptions" src="/assets/images/icons/icon-profile.svg" alt="Icon Profile" />
+            <div class="px-2 text-center">
+                <div class="font-16-700">Mr John</div>
+                <div class="font-12-400 text-secondary">STD15853</div>
+            </div>
+        </div>
+
+        @* Notification *@
+        <div class="bell" @onclick="NavigateToNotifications">
+            <img src="/assets/images/icons/icon-notification.svg" alt="Icon Notification" />
+        </div>
+    </div>    
+</div>
+
+<div class="boundary my-2">
+    <div class="rounded bg-f4f6f6 d-flex justify-content-between px-3 py-2">
+        <div class="align-content-center font-16-700 text-404F4E">Build your community</div>
+        <div>
+            <a href="#" class="button button-secondary px-3"><i class=" fa-solid fa-plus"></i> Invite</a>
+        </div>
+    </div>    
+</div>
+
+<BannerLayout/>
+
+<div class="boundary d-flex justify-content-between my-2">
+    <div class="d-flex align-items-center">
+        <img src="/assets/images/icons/icon-balance.svg" style="height:50px; width:50px;" alt="Balance Icon">
+        <div class="px-2">
+            <div class="text-teal font-12-500">My Balance</div>
+            <div class="font-24-600">£ 300</div>
+        </div>
+    </div>
+    <div>
+        <div class="text-teal font-12-500">Available to Withdraw</div>
+        <div class="d-flex align-items-center">
+            <img src="/assets/images/icons/icon-wallet.svg" alt="Wallet Icon">
+            <div class="font-24-600 px-2">£ 100.32</div>
+        </div>
+    </div>
+</div>
+
+<div class="boundary">
+    <hr>
+</div>
+
+<div class="boundary">
+    <div class="d-flex justify-content-between">
+        <div class="card-dashboard rounded bg-24A1CD4D">
+            <div><strong>100</strong></div>
+            <div class="text-secondary">Invited</div>
+        </div>
+        <div class="card-dashboard rounded bg-F876754D mx-2">
+            <div><strong>100</strong></div>
+            <div class="text-secondary">Not response</div>
+        </div>
+        <div class="card-dashboard rounded bg-5B9A8B4D">
+            <div><strong>100</strong></div>
+            <div class="text-secondary">responsed</div>
+        </div>
+    </div>
+    <div class="d-flex justify-content-between mt-2">
+        <div class="card-dashboard rounded bg-FFBA084D">
+            <div><strong>100</strong></div>
+            <div class="text-secondary">in Process</div>
+        </div>
+        <div class="card-dashboard rounded bg-70E0004D mx-2">
+            <div><strong>100</strong></div>
+            <div class="text-secondary">Processed</div>
+        </div>
+        <div class="card-dashboard rounded bg-9E6F214D">
+            <div> <strong>20%</strong> </div>
+            <div class="text-secondary">Conversion Rate</div>
+        </div>
+    </div>
+</div>
+
+<div class="boundary">
+    <div class="font-16-600 text-495057 my-3">Recent invitations </div>
+
+    <table>
+        <thead>
+            <tr class="font-12-500 bg-f4f6f6">
+                <th>Date and Email</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody class="font-12-400">
+            <tr>
+                <td><span class="text-secondary">15 June 2022</span><br>Glenda_Miller@hotmail.com</td>
+                <td>Invited</td>
+                <td><a href="#" style="color:#1E98B0; text-decoration:none;">Resend</a></td>
+            </tr>
+            <tr>
+                <td><span class="text-secondary">15 June 2022</span><br>Glenda_Miller@hotmail.com</td>
+                <td>Invited</td>
+                <td><a href="#" style="color:#1E98B0; text-decoration:none;">Resend</a></td>
+            </tr>
+            <tr>
+                <td><span class="text-secondary">15 June 2022</span><br>Glenda_Miller@hotmail.com</td>
+                <td>Invited</td>
+                <td><a href="#" style="color:#1E98B0; text-decoration:none;">Resend</a></td>
+            </tr>
+            <tr>
+                <td><span class="text-secondary">15 June 2022</span><br>Glenda_Miller@hotmail.com</td>
+                <td>Invited</td>
+                <td><a href="#" style="color:#1E98B0; text-decoration:none;">Resend</a></td>
+            </tr>
+            <tr>
+                <td><span class="text-secondary">15 June 2022</span><br>Glenda_Miller@hotmail.com</td>
+                <td>Invited</td>
+                <td><a href="#" style="color:#1E98B0; text-decoration:none;">Resend</a></td>
+            </tr>
+            <tr>
+                <td><span class="text-secondary">15 June 2022</span><br>Glenda_Miller@hotmail.com</td>
+                <td>Invited</td>
+                <td><a href="#" style="color:#1E98B0; text-decoration:none;">Resend</a></td>
+            </tr>
+            
+        </tbody>
+    </table>
+
+    <div class="my-2">
+        <a class="button button-Seemore" href="#">See more</a>
+    </div>
+</div>
+
+@* Profile Option Click *@
+@if (isOptionsVisible)
+{
+    <div class="overlay @overlayClass" @onclick="HideOptions"></div>
+    <div class="boundary options-container left @transitionClass">
+        <div class="slider-container">
+            <div class="py-1 flex-grow-1">
+                <div class="user">
+                    @* User Info *@
+                    <div class="user-info">
+                        <img @onclick="HideOptions" src="/assets/images/icons/icon-profile.svg" alt="Icon Profile" />
+                        <div class="px-2 text-center">
+                            <div class="font-16-700">Mr John</div>
+                            <div class="font-12-400 text-secondary">STD15853</div>
+                        </div>
+                    </div>
+                </div>
+
+                @* Options *@
+                <div class="Options">
+                    <div class="d-flex py-2 list-group-item-action" @onclick="NavigateToProfile">
+                        <img src="/assets/images/icons/icon-user.svg" alt="Icon user" />
+                        <div class="px-2">Profile</div>
+                    </div>
+                    <div class="d-flex py-2 list-group-item-action">
+                        <img src="/assets/images/icons/Invitations.svg" alt="Icon"/>
+                        <div class="px-2">Invitations</div>
+                    </div>
+                    <div class="d-flex py-2 list-group-item-action">
+                        <img src="/assets/images/icons/MyTeam.svg" alt="Icon"/>
+                        <div class="px-2">My Team</div>
+                    </div>
+                    <div class="d-flex py-2 list-group-item-action">
+                        <img src="/assets/images/icons/MoneyEarnings.svg" alt="Icon"/>
+                        <div class="px-2">Earnings</div>
+                    </div>
+                    <div class="d-flex py-2 list-group-item-action">
+                        <img src="/assets/images/icons/icon-help.svg" alt="Icon"/>
+                        <div class="px-2">Help & Support</div>
+                    </div>
+                    <div class="d-flex py-2 list-group-item-action">
+                        <img src="/assets/images/icons/icon-settings.svg" alt="Icon"/>
+                        <div class="px-2">Settings</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- logout section -->
+            <div class="d-flex align-items-center justify-content-center list-group-item-action py-2 my-2" @onclick="NavigateBackToIndex">
+                <img src="/assets/images/icons/icon-logout.svg" alt="Icon Log Out" />
+                <div class="px-1">Log Out</div>
+            </div>
+        </div>
+    </div>
+}
+
+@code {
+    private bool isOptionsVisible;
+    private string transitionClass = "";
+    private string overlayClass = "";
+    [Inject] private NavigationManager NavigationManager { get; set; } = null!;
+
+    // Navigations
+    private void NavigateBackToIndex()
+    {
+        NavigationManager.NavigateTo("/");
+    }
+    private void NavigateToNotifications()
+    {
+        NavigationManager.NavigateTo("/notifications");
+    }
+    private void NavigateToApplication()
+    {
+        NavigationManager.NavigateTo("/applications");
+    }
+    private void NavigateToChatDashboard()
+    {
+        NavigationManager.NavigateTo("/chatdashboard");
+    }
+    private void NavigateToMyApplication()
+    {
+        NavigationManager.NavigateTo("/applications");
+    }
+    private void NavigateToProfile()
+    {
+        NavigationManager.NavigateTo("/profile");
+    }
+
+
+    // Sliding Option
+    private void ShowOptions()
+    {
+        transitionClass = "slide-in-left";
+        isOptionsVisible = true;
+        overlayClass = "show";
+        StateHasChanged();
+    }
+    private async Task HideOptions()
+    {
+        transitionClass = "slide-out-left";
+        StateHasChanged();
+        await Task.Delay(500); // Match the animation duration
+        isOptionsVisible = false;
+        overlayClass = "";
+        StateHasChanged();
+    }
+}

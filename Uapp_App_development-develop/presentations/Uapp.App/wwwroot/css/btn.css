@@ -1,0 +1,36 @@
+﻿.apply-card {
+    background-color: white;
+    transform: translateY(100%);
+    transition: transform 0.5s ease;
+}
+
+    .apply-card.show {
+        transform: translateY(0);
+    }
+
+
+.nav-item.active .home-icon {
+    content: url('/assets/images/icons/icon-home-active.svg');
+}
+
+.nav-item.active .application-icon {
+    content: url('/assets/images/icons/icon-application-active.svg');
+}
+
+.nav-item.active .chat-icon {
+    content: url('/assets/images/icons/icon-massage-active.svg');
+}
+
+
+.truncated-text {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    /*max-width: 25ch;*/ /* 25 characters */
+}
+
+.shadow {
+    
+    #045D5E1A
+}

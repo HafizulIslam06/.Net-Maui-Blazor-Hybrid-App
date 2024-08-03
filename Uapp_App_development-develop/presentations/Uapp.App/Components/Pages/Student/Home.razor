@@ -1,0 +1,117 @@
+﻿@page "/home"
+@attribute [Authorize]
+@inject ITokenStorageService tokenservice
+@using Microsoft.AspNetCore.Authorization
+@using Microsoft.AspNetCore.Components.Authorization
+@using Uapp.App.Components.Layout
+@using Uapp.Services.Auth
+@using Uapp.Shared.Core.Services.auth
+@using Uapp.Shared.Responses
+
+@inject AuthenticationStateProvider authenticationStateProvider
+@inject IAuthService authService
+@inject NavigationManager Navigation
+@layout ProfileLayout
+
+<!-- Top Bar-->
+<div class="boundary border-radius-bottom bg-f4f6f6 py-1">
+    <div class="user">
+        @* User Option *@
+
+        <Uapp.App.Components.Pages.Student.Components.LoggedInUserInfo OptionVisibility="ShowOptions" UserInfo="@UserInfo"></Uapp.App.Components.Pages.Student.Components.LoggedInUserInfo>
+
+        @* Notification *@
+        <div class="bell" @onclick="NavigateToNotifications">
+            <img src="/assets/images/icons/icon-notification.svg" alt="Icon Notification" />
+        </div>
+    </div>
+
+    @* Search Bar *@
+    <div class="search-container py-1 my-2">
+        <div class="search-input-wrapper">
+            <img src="/assets/images/icons/icon-search.svg" alt="search icon" class="search-icon">
+            <input type="text" placeholder="Search for Courses & Universities" class="search-bar" />
+        </div>
+    </div>
+</div>
+
+<!-- Bottom Navbar -->
+<NavbarBottom />
+
+<div class="pt-3 pb-4">
+    <BannerLayout />
+    <StatusCardLayout />
+    <CourseCardLayout />
+    <DestinationCardLayout />
+    <UniversityCardLayout />
+</div>
+
+@* Profile Option Click *@
+@if (isOptionsVisible)
+{
+    <div class="overlay @overlayClass" @onclick="HideOptions"></div>
+    <div class="boundary options-container left @transitionClass">
+        <div class="slider-container">
+            <div class="py-1 flex-grow-1">
+                <div class="user my-2">
+                    @* User Info *@
+                    <Uapp.App.Components.Pages.Student.Components.LoggedInUserInfo OptionVisibility="HideOptions" UserInfo="@UserInfo"></Uapp.App.Components.Pages.Student.Components.LoggedInUserInfo>
+                    @*
+                    <div class="user-info py-2" @onclick="OptionVisibility">
+                    <img src="@string.Concat(ApiConstants.Domain,UserInfo.DisplayImage)" alt="Icon Profile" />
+                    <div class="px-2 text-center">
+                    <div class="font-16-700">@UserInfo.DisplayName</div>
+                    <div class="font-12-400 text-secondary">@UserInfo.UserViewId</div>
+                    </div>
+                    </div>
+                    <div class="user-info">
+                    <img @onclick="HideOptions" src="/assets/images/icons/icon-profile.svg" alt="Icon Profile" />
+                    <div class="px-2 text-center">
+                    <div class="font-16-700">Mr John</div>
+                    <div class="font-12-400 text-secondary">STD15853</div>
+                    </div>
+                    </div> *@
+                </div>
+
+                @* Options *@
+                <div class="Options">
+                    <div class="d-flex py-3 px-2 list-group-item-action" @onclick="()=>NavigateToProfile(UserInfo.ReferenceId)">
+                        <img src="/assets/images/icons/icon-user.svg" alt="Icon user" />
+                        <div class="px-2">Profile</div>
+                    </div>
+                    <div class="d-flex py-3 px-2 list-group-item-action" @onclick="NavigateToMyApplication">
+                        <img src="/assets/images/icons/icon-file2.svg" alt="Icon File" />
+
+                        <div class="px-2">My Applications</div>
+                    </div>
+                    <div class="d-flex py-3 px-2 list-group-item-action" @onclick="NavigateToSearchAndApply">
+                        <img src="/assets/images/icons/icon-searchandapply.svg" alt="Icon Search & Apply" />
+                        <div class="px-2">Search & Apply</div>
+                    </div>
+                    <div class="d-flex py-3 px-2 list-group-item-action" @onclick="NavigateToReferFriend">
+                        <img src="/assets/images/icons/icon-share.svg" alt="Icon Refer" />
+                        <div class="px-2">Refer a friend</div>
+                    </div>
+                    <div class="d-flex py-3 px-2 list-group-item-action">
+                        <img src="/assets/images/icons/icon-Ambassador.svg" alt="Icon Ambassador" />
+                        <div class="px-2">Ambassador program</div>
+                    </div>
+                    <div class="d-flex py-3 px-2 list-group-item-action">
+                        <img src="/assets/images/icons/icon-help.svg" alt="Icon Help" />
+                        <div class="px-2">Help & Support</div>
+                    </div>
+                    <div class="d-flex py-3 px-2 list-group-item-action">
+                        <img src="/assets/images/icons/icon-settings.svg" alt="Icon Setting" />
+                        <div class="px-2">Settings</div>
+                    </div>
+                </div>
+            </div>
+
+            @* logout section *@
+            <div class="d-flex align-items-center justify-content-center list-group-item-action py-2 my-5" @onclick="NavigateBackToIndex">
+                <img src="/assets/images/icons/icon-logout.svg" alt="Icon Log Out" />
+                <div class="px-1" @onclick="BeginLogout">Log Out</div>
+            </div>
+        </div>
+    </div>
+}

@@ -1,0 +1,124 @@
+﻿<div class="boundary my-3">
+    <div class="status-card bg-teal">
+        <div>
+            <div class="text-FFFFFF font-16-700">BA (Hons) - Advertising and Digital Marketing Communication</div>
+            <div class="my-1">
+                <div class="text-light-teal font-12-500">University of Greenwich</div>
+            </div>
+        </div>
+
+        <div class="d-flex mt-2">
+            <div class="step completed">
+                <div class="hr-with-text">
+                    <div class="circle"><i class="fa-solid fa-check"></i></div>
+                </div>
+                <div class="label">New Application</div>
+            </div>
+
+            <div class="step completed">
+                <div class="hr-with-text">
+                    <div class="circle"><i class="fa-solid fa-check"></i></div>
+                </div>
+                <div class="label">Under Assessment</div>
+            </div>
+            <div class="step">
+                <div class="hr-with-text">
+                    <div class="circle"><i class="fa-solid fa-check"></i></div>
+                </div>
+                <div class="label">Ready to Apply</div>
+            </div>
+            <div class="step">
+                <div class="hr-with-text">
+                    <div class="circle"><i class="fa-solid fa-check"></i></div>
+                </div>
+                <div class="label">Submitted to University</div>
+            </div>
+        </div>
+
+        <div class="my-1">
+            <hr class="hr-WithoutText-teal" />
+        </div>
+
+        <div class="d-flex justify-content-between">
+            <div>
+                <div class="text-light-teal font-10-400">APP ID</div>
+                <div class="font-12-500 text-FFFFFF">APP24890</div>
+            </div>
+            <div>
+                <div class="text-light-teal font-10-400">Intake</div>
+                <div class="font-12-500 text-FFFFFF">December-2023</div>
+            </div>
+            <div class="align-content-center" @onclick="ToggleStatusDetail">
+                <button class="button button-dropdown text-teal font-10-400">Details<i class="@CurrentIcon px-1" /></button>
+            </div>
+        </div>
+    </div>
+    <div class="status-detail-container @(isShowStatusDetail ? "show" : "hide")">
+        <div class="bg-effbfa rounded">
+            <ul class="timeline">
+                <li class="timeline-item completed">
+                    <span class="circle"></span>
+                    <span>New Application</span>
+                </li>
+                <li class="timeline-item completed">
+                    <span class="circle"></span>
+                    <span>Under Assessment</span>
+                </li>
+                <li class="timeline-item">
+                    <span class="circle"></span>
+                    <span>Ready to Apply</span>
+                </li>
+                <li class="timeline-item">
+                    <span class="circle"></span>
+                    <span>Submitted to University</span>
+                </li>
+                <li class="timeline-item">
+                    <span class="circle"></span>
+                    <span>Application in Process by University</span>
+                </li>
+                <li class="timeline-item">
+                    <span class="circle"></span>
+                    <span>Offer Issued</span>
+                </li>
+                <li class="timeline-item">
+                    <span class="circle"></span>
+                    <span>Application Deferred</span>
+                </li>
+                <li class="timeline-item">
+                    <span class="circle"></span>
+                    <span>CAS Deposit Paid</span>
+                </li>
+                <li class="timeline-item">
+                    <span class="circle"></span>
+                    <span>CAS Processing</span>
+                </li>
+                <li class="timeline-item">
+                    <span class="circle"></span>
+                    <span>Visa Processing</span>
+                </li>
+                <li class="timeline-item">
+                    <span class="circle"></span>
+                    <span>Application Cancelled</span>
+                </li>
+                <li class="timeline-item">
+                    <span class="circle"></span>
+                    <span>Application Completed</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+@code {
+    private bool isShowStatusDetail = false;
+    private string upIcon = "fa-solid fa-angle-up";
+    private string downIcon = "fa-solid fa-angle-down";
+    private string CurrentIcon { get; set; } = "fa-solid fa-angle-down";
+    private void ToggleStatusDetail()
+    {
+        isShowStatusDetail = !isShowStatusDetail;
+
+        CurrentIcon = isShowStatusDetail ? upIcon : downIcon;
+        StateHasChanged();
+    }
+}

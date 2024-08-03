@@ -1,0 +1,42 @@
+﻿/*Auth Section*/
+.bg-auth {
+    background-image: url('/assets/images/bg/auth_bg.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+}
+
+    .bg-auth .auth-overlay {
+        position: relative;
+        height: 100vh;
+        background: rgb(248,243,224);
+        background: linear-gradient(0deg, rgba(248,243,224,1) 20%, rgba(252,249,240,0.6526260162268032) 46%, rgba(255,255,255,0) 85%);
+    }
+
+        .bg-auth .auth-overlay .auth-home {
+            padding: 7%;
+            width: 100%;
+            position: absolute;
+            bottom: 0;
+        }
+
+        .bg-auth .auth-overlay .auth-signin {
+            width: 100%;
+            position: absolute;
+            bottom: 0;
+        }
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 5;
+    display: none;
+}
+
+    .overlay.show {
+        display: block;
+    }

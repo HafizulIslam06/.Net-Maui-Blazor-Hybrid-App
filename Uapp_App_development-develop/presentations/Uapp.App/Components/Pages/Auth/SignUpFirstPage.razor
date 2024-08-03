@@ -1,0 +1,60 @@
+﻿@page "/signupfirstpage"
+@layout AuthLayout
+<EditForm Model="StepOne" OnValidSubmit="NavigateToSecondPage">
+    <DataAnnotationsValidator />
+    <div class="auth-signin">
+        <div class="text-center">
+            <div class="form-control border-radius-top pt-3 pb-4">
+                <div class="p-3">
+                    <div class="text-start mb-3">
+                        <div class="d-flex align-items-center mb-3">
+                            <img src="/assets/images/icons/iconGlobeOutline.svg" alt="Alternate Text" />
+                            <p class="font-16-600 text-515151 mb-0">Select your study destination</p>
+                        </div>
+                        <div class="check-btn-group" disabled="@DataLoading">
+                            @if (DataLoading)
+                            {
+                                <i class="fas fa-spinner fa-spin"></i>
+                            }
+                            else
+                            {
+                                @foreach (var item in preferedCountries)
+                                {                                    
+                                    <input type="button" @onclick="@( () => SelectDestination(@item.Id) )" value="@item.Name" class="@GetButtonClass(@item.Id)" />
+                                }
+                            }
+                        </div>
+                        <ValidationMessage For="@(() => StepOne.PreferedCountry)" class="error-message" />
+                    </div>
+                    <div class="my-4">
+                        <button type="submit" class="button button-primary mb-2" disabled="@IsLoading">
+                            @if (IsLoading)
+                            {
+                                <div class="spinner"></div>
+                            }
+                            else
+                            {
+                                <span>Get Start</span>
+                            }
+                        </button>
+                    </div>
+                    <div class="ellipse-group">
+                        <a href="/signupfirstpage">
+                            <div class="ellipse ellipse-primary"></div>
+                        </a>
+                        <a href="/signupsecondpage">
+                            <div class="ellipse ellipse-secondary"></div>
+                        </a>
+                        <a href="/signupthirdpage">
+                            <div class="ellipse ellipse-secondary"></div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</EditForm>
+
+@code {
+
+}

@@ -1,0 +1,48 @@
+﻿@page "/signin"
+
+@using Uapp.Services.Auth.Models;
+@using Uapp.Services.Auth;
+@layout AuthLayout
+
+
+<EditForm Model="@loginModel" OnValidSubmit="Submit">
+    <DataAnnotationsValidator />
+    <div class="auth-signin">
+        <div class="form-control border-radius-top py-5">
+            <div class="input-section mb-3">
+                <div class="input-container">
+                    <input @bind-value="loginModel.Email" class="input-field border-radius-999 input-field-primary" placeholder="Email Address" type="text" name="name" />
+                    <img src="/assets/images/icons/icon-mail.svg" class="input-icon" alt="Email Icon">
+                </div>
+                <ValidationMessage For="@(() => loginModel.Email)" class="error-message" />
+            </div>
+            <div class="input-section my-2">
+                <div class="input-container">
+                    <input @bind-value="loginModel.Password" class="input-field border-radius-999 input-field-primary" placeholder="Password" type="password" name="password" />
+                    <img src="/assets/images/icons/icon-lock.svg" class="input-icon" alt="Password Icon">
+                </div>
+                <ValidationMessage For="@(() => loginModel.Password)" class="error-message" />
+            </div>
+            @if (!string.IsNullOrEmpty(ErrorMessage))
+            {
+                <div class="text-danger text-center">
+                    @ErrorMessage
+                </div>
+            }
+            <div class="text-center">
+                <button type="submit" class="button button-primary mb-2" disabled="@IsLoading">                    
+                    @if (IsLoading)
+                    {                        
+                        <div class="spinner"></div>
+                    }
+                    else
+                    {
+                        <span>Login</span>
+                    }
+                </button>
+                <a href="forgotpassword" class="text-secondary">Forgot Password?</a>
+            </div>
+        </div>
+    </div>
+</EditForm>
+

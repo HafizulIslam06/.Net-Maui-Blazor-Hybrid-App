@@ -1,0 +1,21 @@
+﻿@page "/nointernet"
+
+@using Uapp.App.Components.Layout
+@layout ProfileLayout
+
+<!-- Body -->
+<div class="boundary">
+    <div class="vh-100 d-flex flex-column text-center justify-content-center align-items-center">
+        <div>
+            <img style="width:70%;" src="/assets/images/icons/icon-noInternet.svg" alt="Icon 404" />
+        </div>
+        <div class="font-16-600 mt-4">No Internet Found!</div>
+        <div class="font-16-400 text-515151 my-3">
+            Check your connetion or try again
+        </div>
+        <a class="button button-secondary mb-5" style="width:50%;" href="home">Retry</a>
+    </div>
+</div>
+
+<!-- Bottom Navbar -->
+<NavbarBottom />

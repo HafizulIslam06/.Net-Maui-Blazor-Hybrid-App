@@ -1,0 +1,68 @@
+﻿@page "/signupsecondpage"
+
+@using Uapp.Services.Auth
+@using Uapp.Services.Auth.Models
+@inject NavigationManager NavigationManager
+@inject RegistrationState RegistrationState
+@layout AuthLayout
+
+<EditForm Model="@StepTwo" OnValidSubmit="NavigateToThirdPage">
+    <DataAnnotationsValidator />
+    <div class="auth-signin">
+        <div class="text-center">
+            <div class="form-control border-radius-top pt-3 pb-4">
+                <div class="p-3">
+                    <div class="defaul_input-section mt-2">
+                        <select class="nametittle-control" @bind="StepTwo.Title">
+                            <option value="0">Select</option>
+                            @foreach (var item in NameTitles)
+                            {
+                                <option value="@item.Id">@item.Name</option>
+                            }
+                        </select>
+                        <input class="firstname-control" @bind="StepTwo.FirstName" placeholder="First Name" type="text" />
+                    </div>
+                    <ValidationMessage For="@(() => StepTwo.FirstName)" class="error-message" />
+
+                    <div class="input-section my-3">
+                        <input @bind="StepTwo.LastName" class="input-field border-radius-999 input-field-primary" placeholder="Last Name" type="text" />
+                    </div>
+                    <ValidationMessage For="@(() => StepTwo.LastName)" class="error-message" />
+                    <div class="input-section my-3">
+                        <input @bind="StepTwo.Email" class="input-field border-radius-999 input-field-primary" placeholder="Email Address" type="email" />
+                    </div>
+                    <ValidationMessage For="@(() => StepTwo.Email)" class="error-message" />
+                    <div class="input-section my-3">
+                        <input @bind="StepTwo.PhoneNumber" class="input-field border-radius-999 input-field-primary" placeholder="Phone Number" type="text" />
+                    </div>
+                    <ValidationMessage For="@(() => StepTwo.PhoneNumber)" class="error-message" />
+
+                    <div class="my-4">
+                        <button type="submit" class="button button-primary" disabled="@IsLoading">
+                            @if (IsLoading)
+                            {
+                                <div class="spinner"></div>
+                            }
+                            else
+                            {
+                                <span>Next</span>
+                            }
+                        </button>
+                    </div>
+
+                    <div class="ellipse-group">
+                        <a href="/signupfirstpage">
+                            <div class="ellipse ellipse-secondary"></div>
+                        </a>
+                        <a href="/signupsecondpage">
+                            <div class="ellipse ellipse-primary"></div>
+                        </a>
+                        <a href="/signupthirdpage">
+                            <div class="ellipse ellipse-secondary"></div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</EditForm>

@@ -1,0 +1,70 @@
+﻿@page "/progressbar"
+
+<div class="card progressbar-crad mt-3">
+    <div class="font-14-700 my-2">Application Assessment</div>
+
+    <div class="d-flex mt-2">
+        <div class="d-flex flex-column align-items-center">
+            <div class="circular-progress" @ref="circularProgress" style="background: conic-gradient(@BackgroundColor)">
+                <span class="progress-value">@ProgressValue%</span>
+            </div>
+            <div class="font-12-500 mt-1">Assessment</div>
+        </div>
+
+        <div class="px-3 text-nowrap">
+            <div class="font-12-400"><i class="fa-solid fa-circle-check px-2" style="color: #63E6BE;"></i>Application Details</div>
+            <div class="font-12-400"><i class="fa-solid fa-circle-exclamation px-2" style="color: #FD8F33;"></i>Student Details</div>
+            <div class="font-12-400"><i class="fa-solid fa-circle-minus px-2" style="color: #FF4D4F"></i>Internal Assessment</div>
+            <div class="font-12-400"><i class="fa-solid fa-circle-check px-2" style="color: #63E6BE;"></i>Documents</div>
+            <div class="font-12-400"><i class="fa-solid fa-circle-check px-2" style="color: #63E6BE;"></i>Consent</div>
+        </div>
+    </div>
+</div>
+
+@code {
+    // progrssbar
+    [Parameter]
+    public int ProgressValue { get; set; }
+
+    private ElementReference circularProgress;
+    private int currentValue = 0;
+
+    private string BackgroundColor
+    {
+        get
+        {
+            string color;
+            if (currentValue < 20)
+                color = "#F64C4C";
+            else if (currentValue < 60)
+                color = "#FFAD0D";
+            else
+                color = "#47B881";
+
+            return $"{color} {currentValue * 3.6}deg, #ededed 0deg";
+        }
+    }
+
+    protected override async Task OnParametersSetAsync()
+    {
+        await UpdateProgressAsync();
+    }
+
+    private async Task UpdateProgressAsync()
+    {
+        var steps = 55;  // Number of steps for the animation
+        ProgressValue = steps;
+        var increment = (double)ProgressValue / steps;
+        var speed = 10;   // Delay time in milliseconds
+
+        while (currentValue < ProgressValue)
+        {
+            currentValue = (int)Math.Min(currentValue + increment, ProgressValue);
+            await InvokeAsync(() =>
+            {
+                StateHasChanged();
+            });
+            await Task.Delay(speed);
+        }
+    }
+}

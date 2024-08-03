@@ -1,0 +1,22 @@
+﻿@page "/404"
+
+@using Uapp.App.Components.Layout
+@layout ProfileLayout
+
+<!-- Body -->
+<div class="boundary">
+    <div class="vh-100 d-flex flex-column text-center justify-content-center align-items-center">
+        <div>
+            <img style="width:70%;" src="/assets/images/icons/icon-404.svg" alt="Icon 404" />
+        </div>
+        <div class="font-16-600 mt-4">Your page didn't respond.</div>
+        <div class="font-16-400 text-515151 my-3">
+            This page doesn't exist or maybe fell asleep!
+            We suggest you back to home
+        </div>
+        <a class="button-invite px-4 mb-5" href="home">Back home</a>
+    </div>
+</div>
+
+<!-- Bottom Navbar -->
+<NavbarBottom />

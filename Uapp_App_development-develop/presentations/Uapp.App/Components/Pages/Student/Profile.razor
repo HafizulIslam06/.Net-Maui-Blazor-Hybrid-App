@@ -1,0 +1,699 @@
+﻿@page "/profile/{id:long}"
+
+@using Uapp.App.Components.Layout
+@using Uapp.Services.Application.ApplicationList.ApplicationServices
+@using Uapp.Services.Application.Models
+@using Uapp.Services.Funding
+@using Uapp.Services.Funding.Model
+@using Uapp.Services.StudentProfile.Models;
+@using Uapp.Services.StudentProfile;
+@layout ProfileLayout
+
+<!-- Top Nav -->
+<div class="position-sticky top-0" style="z-index:1; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+    <div class="boundary">
+        <div class="d-flex justify-content-between bg-fff py-3 pt-3">
+            <img @onclick="NavigateToHome" src="/assets/images/icons/icon-arrowBack.svg" alt="Icon-arrowBack" />
+            <div class="font-22-600">Profile</div>
+            <img src="/assets/images/icons/icon-moreOption.svg" alt="icon-moreOption" />
+        </div>
+    </div>
+</div>
+
+<div class="boundary">
+    <!-- Profile Info-->
+    <div class="profile">
+        <div class="cover-pic">
+            <img src="/assets/images/icons/icon-cover-pic.svg" alt="">
+        </div>
+
+        <div class="profile-image-wrapper">
+            <img src="@ProfileImageUrl" alt="icon-profile">
+        </div>
+
+        <div class="profile-info">
+            <div class="d-flex justify-content-between px-4">
+                <div class="d-flex flex-column">
+                    <div>
+                        <div class="font-16-600">@(string.IsNullOrEmpty(studentProfile.Name) ? "-" : studentProfile.Name)</div>
+                        <div class="font-12-400 text-secondary">@(string.IsNullOrEmpty(studentProfile.StudentViewId) ? "-" : studentProfile.StudentViewId)</div>
+                    </div>
+                    <div class="d-flex">
+                        <img src="/assets/images/icons/icon-mail-01.svg" alt="icon-mail">
+                        <div class="font-12-400 text-secondary px-2">@(string.IsNullOrEmpty(studentProfile.Email) ? "-" : studentProfile.Email)</div>
+                    </div>
+                    <div class="d-flex mt-1">
+                        <img src="/assets/images/icons/icon-phone-01.svg" alt="icon-phone">
+                        <div class="font-12-400 text-secondary px-2">@(string.IsNullOrEmpty(studentProfile.PhoneNumber) ? "-" : studentProfile.PhoneNumber)</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- My Consultant -->
+        <div class="Consultant d-flex flex-column border rounded p-3">
+            <div class="font-14-700 pb-1">My Consultant</div>
+            <div class="d-flex pt-2">
+                <div>
+                    <img src="/assets/images/icons/icon-consultant.svg" alt="icon-profile">
+                </div>
+                <div class="px-2">
+                    <div class="font-16-600">Mr Jhon</div>
+                    <div class="font-12-400 text-secondary">CON-1574</div>
+                    <div class="d-flex">
+                        <img src="/assets/images/icons/icon-mail-01.svg" alt="icon-mail">
+                        <div class="font-12-400 text-secondary px-2">xyz@gmail.com</div>
+                    </div>
+                    <div class="d-flex mt-1">
+                        <img src="/assets/images/icons/icon-phone-01.svg" alt="icon-phone">
+                        <div class="font-12-400 text-secondary px-2">02072658479</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Personal Information -->
+    <div class="Personal-info py-3">
+        <div class="d-flex justify-content-between border-top border-bottom py-2 mb-2">
+            <div class="font-14-700">Personal Information</div>
+            <img src="/assets/images/icons/icon-edit.svg" alt="icon-edit" />
+        </div>
+
+        @if (IsLoaderProfileInfo)
+        {
+            <div class="text-center">
+                <i class="fas fa-spinner fa-spin"></i>
+            </div>
+        }
+        else
+        {
+            <div class="d-flex row">
+                <!-- Labels -->
+                <div class="d-flex flex-column col-6 font-12-400 text-secondary">
+                    <div>Name</div>
+                    <div>Date Of Birth</div>
+                    <div>Nationality</div>
+                    <div>Country Of Residence</div>
+                    <div>Passport Number</div>
+                    <div>Issue Date</div>
+                    <div>Expiry Date</div>
+                    <div>Gender</div>
+                    <div>Phone Number</div>
+                    <div>Marital Status</div>
+                    <div>Email</div>
+                    <div>Country Of Birth</div>
+                </div>
+                <!-- DATA -->
+                <div class="d-flex flex-column col-6 font-12-400 text-secondary">
+                    <div>@(string.IsNullOrEmpty(studentProfile.Name) ? "-" : studentProfile.Name)</div>
+                    <div>
+                        @((studentProfile.DateOfBirth.HasValue && studentProfile.DateOfBirth != DateTime.MinValue) ?
+                            studentProfile.DateOfBirth.Value.ToShortDateString() : "-")
+                    </div>
+                    <div>@(string.IsNullOrEmpty(studentProfile.Nationality) ? "-" : studentProfile.Nationality)</div>
+                    <div>@(string.IsNullOrEmpty(studentProfile.CountryOfResidence) ? "-" : studentProfile.CountryOfResidence)</div>
+                    <div>@(string.IsNullOrEmpty(studentProfile.PassportNumber) ? "-" : studentProfile.PassportNumber)</div>
+                    <div>@(studentProfile.IssueDate == DateTime.MinValue ? "-" : studentProfile.IssueDate.ToShortDateString())</div>
+                    <div>@(studentProfile.ExpiryDate == DateTime.MinValue ? "-" : studentProfile.ExpiryDate.ToShortDateString())</div>
+                    <div>@(string.IsNullOrEmpty(studentProfile.Gender) ? "-" : studentProfile.Gender)</div>
+                    <div>@(string.IsNullOrEmpty(studentProfile.PhoneNumber) ? "-" : studentProfile.PhoneNumber)</div>
+                    <div>@(string.IsNullOrEmpty(studentProfile.MaritalStatus) ? "-" : studentProfile.MaritalStatus)</div>
+                    <div>@(string.IsNullOrEmpty(studentProfile.Email) ? "-" : studentProfile.Email)</div>
+                    <div>@(string.IsNullOrEmpty(studentProfile.CountryOfBirth) ? "-" : studentProfile.CountryOfBirth)</div>
+                </div>
+            </div>
+        }        
+    </div>
+
+    <!-- Contact Information -->
+    <div class="contact-info py-3">
+        <div class="d-flex justify-content-between border-top border-bottom py-2 mb-2">
+            <div class="font-14-700">Contact Information</div>
+            <img src="/assets/images/icons/icon-edit.svg" alt="icon-edit" />
+        </div>
+
+        @if (IsLoaderProfileInfo)
+        {
+            <div class="text-center">
+                <i class="fas fa-spinner fa-spin"></i>
+            </div>
+        }
+        else
+        {
+            @if (studentProfile.StudentContactInfos != null)
+            {
+                @foreach (var item in studentProfile.StudentContactInfos)
+                {
+                    <div class="d-flex row">
+                        <!-- Mailling Address -->
+                        <div class="col-12 font-12-700 py-2">@item?.AddressType?.Name</div>
+                        <div class="d-flex flex-column col-6 font-12-400 text-secondary">
+                            <div class="py-1">Address Line 1</div>
+                            <div class="py-1">Address Line 2</div>
+                            <div class="py-1">City</div>
+                            <div class="py-1">State/County</div>
+                            <div class="py-1">Post/Zip Code</div>
+                            <div class="py-1">Country</div>
+                        </div>
+                        <div class="d-flex flex-column col-6 font-12-400 text-secondary">
+                            <div class="py-1">@(string.IsNullOrEmpty(@item?.AddressLine) ? "-" : @item?.AddressLine)</div>
+                            <div class="py-1">@(string.IsNullOrEmpty(@item?.HouseNo) ? "-" : @item?.HouseNo)</div>
+                            <div class="py-1">@(string.IsNullOrEmpty(@item?.City) ? "-" : @item?.City)</div>
+                            <div class="py-1">@(string.IsNullOrEmpty(@item?.State) ? "-" : @item?.State)</div>
+                            <div class="py-1">@(string.IsNullOrEmpty(@item?.ZipCode) ? "-" : @item?.ZipCode)</div>
+                            <div class="py-1">@(string.IsNullOrEmpty(@item?.Country?.Name) ? "-" : @item?.Country?.Name)</div>
+                        </div>
+                    </div>
+                }
+            }
+        }        
+    </div>
+
+    <!-- Application Information -->
+    <div class="application-information py-3">
+        <div class="d-flex justify-content-between border-top border-bottom py-2 mb-2">
+            <div class="font-14-700">Application Information</div>
+            <img src="/assets/images/icons/icon-edit.svg" alt="icon-edit" />
+        </div>
+
+        @if (IsLoaderApplication)
+        {
+            <div class="text-center">
+                <i class="fas fa-spinner fa-spin"></i>
+            </div>
+        }
+        else
+        {
+            <div class="d-flex row">
+                <div class="d-flex flex-column col-6 font-12-400 text-secondary">
+                    <div>Student's preferred study destination</div>
+                    <div>Application Type</div>
+                </div>
+
+                <!-- DATA -->
+                <div class="d-flex flex-column col-6 font-12-400 text-secondary">
+                    <div>@(string.IsNullOrEmpty(applicationOverviewViewModel.PreferredCountry) ? "-" : applicationOverviewViewModel.PreferredCountry)</div>
+                    <div>@(string.IsNullOrEmpty(applicationOverviewViewModel.ApplicationInfo) ? "-" : applicationOverviewViewModel.ApplicationInfo)</div>
+                </div>
+            </div>
+        }
+    </div>
+
+    <!-- Funding Information -->
+    <div class="funding-information py-3">
+        <div class="d-flex justify-content-between border-top border-bottom py-2 mb-2">
+            <div class="font-14-700">Funding Information</div>
+            <img src="/assets/images/icons/icon-edit.svg" alt="icon-edit" />
+        </div>
+
+        @if (IsLoaderFund)
+        {
+            <div class="text-center">
+                <i class="fas fa-spinner fa-spin"></i>
+            </div>
+        }
+        else
+        {
+            <div class="d-flex justify-content-between font-12-400 text-secondary row">
+                <div class="col-6">Fund</div>
+                <!-- Funding Information Data Binding -->
+                <div class="col-6">@(string.IsNullOrEmpty(fundingModel.fundingType) ? "-" : fundingModel.fundingType)</div>
+            </div>
+        }
+    </div>
+
+    <!-- Educational Information -->
+    <div class="Educational-information py-3">
+        <div class="d-flex justify-content-between border-top border-bottom py-2 mb-2">
+            <div class="font-14-700">Educational Information</div>
+            <img src="/assets/images/icons/icon-edit.svg" alt="icon-edit" />
+        </div>
+
+        @if (IsLoaderProfileInfo)
+        {
+            <div class="text-center">
+                <i class="fas fa-spinner fa-spin"></i>
+            </div>
+        }
+        else
+        {
+            <div class="d-flex font-12-400 text-secondary row">
+                @if (studentProfile.EducationInfos != null)
+                {
+                    @foreach (var item in studentProfile.EducationInfos)
+                    {
+                        <div class="d-flex">
+                            <div class="d-flex flex-column col-6 font-12-400 text-secondary">
+                                <div class="py-1">Institution Name</div>
+                                <div class="py-1">Education Level</div>
+                                <div class="py-1">Attended From</div>
+                                <div class="py-1">Attended To</div>
+                                <div class="py-1">Duration</div>
+                                <div class="py-1">Status</div>
+                                <div class="py-1">Qualification Subject</div>
+                                <div class="py-1">Grade</div>
+
+                            </div>
+                            <div class="d-flex flex-column col-6 font-12-400 text-secondary">
+                                <div class="py-1">@(string.IsNullOrEmpty(item?.NameOfInstitution) ? "-" : item?.NameOfInstitution)</div>
+                                <div class="py-1">@(string.IsNullOrEmpty(item?.EducationLevelName) ? "-" : item?.EducationLevelName)</div>
+                                <div class="py-1">@(item?.AttendedInstitutionFrom == default(DateTime) ? "-" : item?.AttendedInstitutionFrom.ToString("yyyy-MM-dd"))</div>
+                                <div class="py-1">@(item?.AttendedInstitutionTo == null ? "-" : item?.AttendedInstitutionTo.Value.ToString("yyyy-MM-dd"))</div>
+                                <div class="py-1">@(string.IsNullOrEmpty(item?.Duration) ? "-" : item?.Duration)</div>
+                                <div class="py-1">@(item?.StillStudying == true ? "Still Studying" : (item?.StillStudying == false ? "Not Studying" : "-"))</div>
+                                <div class="py-1">@(string.IsNullOrEmpty(item?.QualificationSubject) ? "-" : item?.QualificationSubject)</div>
+                                <div class="py-1">@(item?.FinalGrade.ToString())</div>
+                            </div>
+                        </div>
+                    }
+                }
+                else
+                {
+                    <div>No education information available.</div>
+                }
+            </div>
+        }        
+    </div>
+
+    <!-- Score Information -->
+    <div class="Score-information py-3">
+        <div class="d-flex justify-content-between border-top border-bottom py-2 mb-2">
+            <div class="font-14-700">English Language & Test Score</div>
+            <img src="/assets/images/icons/icon-edit.svg" alt="icon-edit" />
+        </div>
+
+        @if (IsLoaderProfileInfo)
+        {
+            <div class="text-center">
+                <i class="fas fa-spinner fa-spin"></i>
+            </div>
+        }
+        else
+        {
+            <div class="d-flex flex-column">
+                <div class="d-flex flex-column row justify-content-between font-12-400 text-secondary">
+                    <div class="text-515151 font-12-700">GRE Result</div>
+                    <!-- GRE Score Information Data Binding -->
+                    @if (studentProfile.greScoreInfo != null)
+                    {
+                        <div class="d-flex">
+                            <div class="d-flex flex-column col-6 font-12-400 text-secondary">
+                                <div>Quantitative Score</div>
+                                <div>Quantitative Rank</div>
+                                <div>Verbal Score</div>
+                                <div>Verbal Rank</div>
+                                <div>Writing Score</div>
+                                <div>Writing Rank</div>
+
+                            </div>
+                            <div class="d-flex flex-column col-6 font-12-400 text-secondary">
+                                <div>@(string.IsNullOrEmpty(studentProfile.greScoreInfo.QuantitativeScore) ? "-" : studentProfile.greScoreInfo.QuantitativeScore)</div>
+                                <div>@(string.IsNullOrEmpty(studentProfile.greScoreInfo.QuantitativeRank) ? "-" : studentProfile.greScoreInfo.QuantitativeRank)</div>
+                                <div>@(string.IsNullOrEmpty(studentProfile.greScoreInfo.VerbalScore) ? "-" : studentProfile.greScoreInfo.VerbalScore)</div>
+                                <div>@(string.IsNullOrEmpty(studentProfile.greScoreInfo.VerbalRank) ? "-" : studentProfile.greScoreInfo.VerbalRank)</div>
+                                <div>@(string.IsNullOrEmpty(studentProfile.greScoreInfo.WritingScore) ? "-" : studentProfile.greScoreInfo.WritingScore)</div>
+                                <div>@(string.IsNullOrEmpty(studentProfile.greScoreInfo.WritingRank) ? "-" : studentProfile.greScoreInfo.WritingRank)</div>
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        <div>GRE Score information is not available.</div>
+                    }
+                </div>
+
+                <div class="d-flex flex-column row justify-content-between font-12-400 text-secondary mt-4">
+                    <div class="text-515151 font-12-700">GMAT Result</div>
+                    <!-- GMAT Score Information Data Binding -->
+                    @if (studentProfile.gmatScoreInfo != null)
+                    {
+                        <div class="d-flex">
+                            <div class="info d-flex flex-column col-6 font-12-400 text-secondary">
+                                <div>Verbal Score</div>
+                                <div>Verbal Rank</div>
+                                <div>Quantitative Score</div>
+                                <div>Quantitative Rank</div>
+                                <div>Writing Score</div>
+                                <div>Writing Rank</div>
+                                <div>Total Score</div>
+                                <div>Total Rank</div>
+                                <div>Exam Date</div>
+                            </div>
+                            <div class="info d-flex flex-column col-6 font-12-400 text-secondary">
+                                <div>@(string.IsNullOrEmpty(studentProfile.gmatScoreInfo.VerbalScore) ? "-" : studentProfile.gmatScoreInfo.VerbalScore)</div>
+                                <div>@(string.IsNullOrEmpty(studentProfile.gmatScoreInfo.VerbalRank) ? "-" : studentProfile.gmatScoreInfo.VerbalRank)</div>
+                                <div>@(string.IsNullOrEmpty(studentProfile.gmatScoreInfo.QuantitativeScore) ? "-" : studentProfile.gmatScoreInfo.QuantitativeScore)</div>
+                                <div>@(string.IsNullOrEmpty(studentProfile.gmatScoreInfo.QuantitativeRank) ? "-" : studentProfile.gmatScoreInfo.QuantitativeRank)</div>
+                                <div>@(string.IsNullOrEmpty(studentProfile.gmatScoreInfo.WritingScore) ? "-" : studentProfile.gmatScoreInfo.WritingScore)</div>
+                                <div>@(string.IsNullOrEmpty(studentProfile.gmatScoreInfo.WritingRank) ? "-" : studentProfile.gmatScoreInfo.WritingRank)</div>
+                                <div>@(studentProfile.gmatScoreInfo.TotalScore == 0 ? "-" : studentProfile.gmatScoreInfo.TotalScore.ToString())</div>
+                                <div>@(studentProfile.gmatScoreInfo.TotalRank == 0 ? "-" : studentProfile.gmatScoreInfo.TotalRank.ToString())</div>
+                                <div>@(studentProfile.gmatScoreInfo.GmatExamDate == null ? "-" : studentProfile.gmatScoreInfo.GmatExamDate.Value.ToString("yyyy-MM-dd"))</div>
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        <div>GMAT Score information is not available.</div>
+                    }
+                </div>
+
+                <div class="d-flex flex-column row justify-content-between font-12-400 text-secondary mt-4">
+                    <div class="text-515151 font-12-700">IELTS Score</div>
+                    <!-- IELTS Score Information Data Binding -->
+                    @if (studentProfile.IELTSScore != null)
+                    {
+                        <div class="d-flex">
+                            <div class="info d-flex flex-column col-6 font-12-400 text-secondary">
+                                <div>Listening</div>
+                                <div>Reading</div>
+                                <div>Writing</div>
+                                <div>Speaking</div>
+                                <div>Overall</div>
+                                <div>Exam Date</div>
+                            </div>
+                            <div class="info d-flex flex-column col-6 font-12-400 text-secondary">
+                                <div>@(studentProfile.IELTSScore.Listening == 0 ? "-" : studentProfile.IELTSScore.Listening.ToString())</div>
+                                <div>@(studentProfile.IELTSScore.Reading == 0 ? "-" : studentProfile.IELTSScore.Reading.ToString())</div>
+                                <div>@(studentProfile.IELTSScore.Writing == 0 ? "-" : studentProfile.IELTSScore.Writing.ToString())</div>
+                                <div>@(studentProfile.IELTSScore.Speaking == 0 ? "-" : studentProfile.IELTSScore.Speaking.ToString())</div>
+                                <div>@(studentProfile.IELTSScore.Overall == 0 ? "-" : studentProfile.IELTSScore.Overall.ToString())</div>
+                                <div>@(studentProfile.IELTSScore.ExamDate == default(DateTime) ? "-" : studentProfile.IELTSScore.ExamDate.ToString("yyyy-MM-dd"))</div>
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        <div>IELTS Score information is not available.</div>
+                    }
+                </div>
+            </div>
+        }        
+    </div>
+
+    <!-- experience Information -->
+    <div class="experience-information">
+        <div class="d-flex justify-content-between border-top border-bottom py-2 mb-2">
+            <div class="font-14-700">Experience Information</div>
+            <img src="/assets/images/icons/icon-edit.svg" alt="icon-edit" />
+        </div>
+
+        @if (IsLoaderProfileInfo)
+        {
+            <div class="text-center">
+                <i class="fas fa-spinner fa-spin"></i>
+            </div>
+        }
+        else
+        {
+            @if (studentProfile.experienceinfo != null)
+            {
+                @foreach (var item in studentProfile.experienceinfo)
+                {
+                    <div class="d-flex justify-content-between font-12-400 text-secondary">
+                        <div>Job Title</div>
+                        <div>@(string.IsNullOrEmpty(item.JobTitle) ? "-" : item.JobTitle)</div>
+                    </div>
+                    <div class="d-flex justify-content-between font-12-400 text-secondary my-1">
+                        <div>Company Name</div>
+                        <div>@(string.IsNullOrEmpty(item.CompanyName) ? "-" : item.CompanyName)</div>
+                    </div>
+
+                    <div class="py-2">
+                        <div class="font-12-700">Duties and Responsibilities</div>
+                        <div class="font-12-400 text-secondary">
+                            @(string.IsNullOrEmpty(item.EmployeementDetails) ? "-" : item.EmployeementDetails)
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-between font-12-400 text-secondary">
+                        <div>From</div>
+                        <div>@item.StartDate.ToString("yyyy-MM-dd")</div>
+                    </div>
+                    <div class="d-flex justify-content-between font-12-400 text-secondary my-1">
+                        <div>To</div>
+                        <div>@(item.IsStillWorking == true ? "Continue" : (item.EndDate.HasValue ? item.EndDate.Value.ToString("yyyy-MM-dd") : "-"))</div>
+                    </div>
+                }
+            }
+            else
+            {
+                <div>No experience information available.</div>
+            }
+        }        
+    </div>
+
+    <!-- Reference Information -->
+    <div class="reference-information py-3">
+        <div class="d-flex justify-content-between border-top border-bottom py-2 mb-2">
+            <div class="font-14-700">Reference Information</div>
+            <img src="/assets/images/icons/icon-edit.svg" alt="icon-edit" />
+        </div>
+
+        @if (IsLoaderProfileInfo)
+        {
+            <div class="text-center">
+                <i class="fas fa-spinner fa-spin"></i>
+            </div>
+        }
+        else
+        {
+            <div class="font-12-400 text-secondary">
+                @if (studentProfile.referenceInfo != null)
+                {
+                    @foreach (var item in studentProfile.referenceInfo)
+                    {
+                        <div class="d-flex flex-column row col-12 mb-3">
+                            <div class="d-flex">
+                                <div class="label d-flex flex-column col-6 font-12-400 text-secondary">
+                                    <div>Name</div>
+                                    <div>Relation</div>
+                                    <div>Institute/Company</div>
+                                    <div>Phone</div>
+                                    <div>Email</div>
+                                </div>
+                                <div class="d-flex flex-column col-6 font-12-400 text-secondary">
+                                    <div>@(string.IsNullOrEmpty(item.ReferenceName) ? "-" : item.ReferenceName)</div>
+                                    <div>@(string.IsNullOrEmpty(item.ReferenceTypeName) ? "-" : item.ReferenceTypeName)</div>
+                                    <div>@(string.IsNullOrEmpty(item.Institute_Company) ? "-" : item.Institute_Company)</div>
+                                    <div>@(string.IsNullOrEmpty(item.PhoneNumber) ? "-" : item.PhoneNumber)</div>
+                                    <div>@(string.IsNullOrEmpty(item.EmailAddress) ? "-" : item.EmailAddress)</div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                }
+                else
+                {
+                    <div>No reference information available.</div>
+                }
+            </div>
+        }        
+    </div>
+
+    <!-- Personal Statement -->
+    <div class="Statement-information py-3">
+        <div class="d-flex justify-content-between border-top border-bottom py-2 mb-2">
+            <div class="font-14-700">Personal Statement</div>
+            <img src="/assets/images/icons/icon-edit.svg" alt="icon-edit" />
+        </div>
+
+        @if (IsLoaderProfileInfo)
+        {
+            <div class="text-center">
+                <i class="fas fa-spinner fa-spin"></i>
+            </div>
+        }
+        else
+        {
+            <!-- Personal statement Data Binding -->
+            @if (studentProfile.profilePersonalStatement != null)
+            {
+                <div class="font-12-400 text-secondary">@(string.IsNullOrEmpty(studentProfile.profilePersonalStatement.Statement) ? "-" : studentProfile.profilePersonalStatement.Statement)</div>
+            }
+            else
+            {
+                <div class="font-12-400 text-secondary">Personal statement is not available.</div>
+            }
+        }       
+    </div>
+
+    <!-- Other Information -->
+    <div class="other-information py-3">
+        <div class="d-flex justify-content-between border-top border-bottom py-2 mb-2">
+            <div class="font-14-700">Other Information</div>
+            <img src="/assets/images/icons/icon-edit.svg" alt="icon-edit" />
+        </div>
+
+        @if (IsLoaderProfileInfo)
+        {
+            <div class="text-center">
+                <i class="fas fa-spinner fa-spin"></i>
+            </div>
+        }
+        else
+        {
+            @if (studentProfile.profileOtherInfo != null)
+            {
+                <div class="d-flex flex-column font-12-400 text-secondary">
+                    <div class="font-12-700">Disability Description</div>
+                    <div>@studentProfile.profileOtherInfo.DisabilityDescription</div>
+                </div>
+                <div class="d-flex justify-content-between font-12-400 text-secondary my-2">
+                    <div class="font-12-500">Criminal convictions Description</div>
+                    <div class="font-12-500">@studentProfile.profileOtherInfo.CriminalConvictionsDescription</div>
+                </div>
+            }
+            else
+            {
+                <div class="font-12-400 text-secondary">Personal statement is not available.</div>
+            }
+        }        
+    </div>
+
+    <!-- Documents -->
+    <div class="documents-information py-3">
+        <div class="d-flex justify-content-between border-top border-bottom py-2 mb-2">
+            <div class="font-14-700">Documents</div>
+            <img src="/assets/images/icons/icon-edit.svg" alt="icon-edit" />
+        </div>
+
+        @if (IsLoaderDoc == true)
+        {
+            <div class="text-center">
+                <i class="fas fa-spinner fa-spin"></i>
+            </div>
+        }
+        else
+        {
+            @if (profileDocumentModel != null)
+            {
+                @foreach (var item in profileDocumentModel)
+                {
+                    @foreach (var items in item.Documents)
+                    {
+                        <div class="card mt-3">
+                            <div class="boundary my-3">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="d-flex justify-content-center align-items-center">
+                                        <img src="assets/images/icons/icon-textfile.svg" />
+                                        <div class="px-3">@items.DocumentLevelName</div>
+                                    </div>
+                                    <i class="fa-solid fa-ellipsis-v"></i>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                }
+            }
+            else
+            {
+                <p>
+                    No Document found
+                </p>
+            }
+        }       
+    </div>
+</div>
+
+@* Personal Information Option Click *@
+@* @if (isPersonalInformationVisible)
+{
+    <div class="overlay @overlayClass" @onclick="HidePersonalInformationOptions"></div>
+    <div class="slider-container-down @transitionClass">
+        <div class="boundary options-container down">
+            <div class="d-flex flex-column py-4">
+                <div class="font-22-600 text-center">Personal Information</div>
+                <div class="d-flex flex-column">
+                    <div>
+                        MailingAddress
+                        <div class="font-14-500 fw-bold">Name</div>
+                        <input type="text" class="input-field my-1" placeholder="Type your name">
+                    </div>
+                    <div class="my-1">
+                        <div class="font-14-500 fw-bold">Date of Birth</div>
+                        <input type="text" class="input-field my-1" placeholder="Type here">
+                    </div>
+                    <div class="my-1">
+                        <div class="font-14-500 fw-bold">Nationality</div>
+                        <input type="text" class="input-field my-1" placeholder="Type here">
+                    </div>
+                    <div class="my-1">
+                        <div class="font-14-500 fw-bold">Country of Residence</div>
+                        <input type="text" class="input-field my-1" placeholder="Type here">
+                    </div>
+                    <div class="my-1">
+                        <div class="font-14-500 fw-bold">Passport Number</div>
+                        <input type="text" class="input-field my-1" placeholder="Type here">
+                    </div>
+                    <div class="my-1">
+                        <div class="font-14-500 fw-bold">Issue Date</div>
+                        <input type="text" class="input-field my-1" placeholder="Type here">
+                    </div>
+                    <div class="my-1">
+                        <div class="font-14-500 fw-bold">Expiry Date</div>
+                        <input type="text" class="input-field my-1" placeholder="Type here">
+                    </div>
+                    <div>
+                        <a href="#" class="button button-primary my-2">Save and Next</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+} *@
+
+@* Contact Information Option Click *@
+@* @if (isContactInformationVisible)
+{
+    <div class="overlay @overlayClass" @onclick="HideContactInformation"></div>
+    <div class="slider-container-down @transitionClass">
+        <div class="boundary options-container down">
+            <div class="d-flex flex-column my-4">
+                <div class="font-22-600 text-center">Contact Information</div>
+                <div class="d-flex flex-column">
+                    <div class="font-12-700 my-1">Mailling Address</div>
+                    <div class="my-1">
+                        <div class="font-14-500 fw-bold my-1">Address Line 1</div>
+                        <input type="text" class="input-field " placeholder="Type your name">
+                    </div>
+                    <div class="my-1">
+                        <div class="font-14-500 fw-bold my-1">Address Line 2</div>
+                        <input type="text" class="input-field" placeholder="Type here">
+                    </div>
+                    <div class="my-1">
+                        <div class="font-14-500 fw-bold my-1">City</div>
+                        <select class="form-select text-secondary" aria-label="Default select example">
+                            <option selected>Type here</option>
+                        </select>
+                    </div>
+                    <div class="my-1">
+                        <div class="font-14-500 fw-bold my-1">State/County</div>
+                        <select class="form-select text-secondary" aria-label="Default select example">
+                            <option selected>Type here</option>
+                        </select>
+                    </div>
+                    <div class="my-1">
+                        <div class="font-14-500 fw-bold my-1">Post/Zip Code</div>
+                        <input type="text" class="input-field my-2" placeholder="Type here">
+                    </div>
+                    <div class="my-1">
+                        <div class="font-14-500 fw-bold my-1">Country</div>
+                        <select class="form-select text-secondary" aria-label="Default select example">
+                            <option selected>Type here</option>
+                        </select>
+                    </div>
+                    <div class="d-flex align-items-center row my-4">
+                        <div class="col-2">
+                            <img src="/assets/images/icons/icon-backArrow.svg" alt="Back arrow" />
+                        </div>
+                        <div class="col-10">
+                            <a href="#" class="button button-primary mx-2">Save and Next</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+} *@

@@ -1,0 +1,90 @@
+﻿@page "/chatdashboard"
+
+@using Uapp.App.Components.Layout
+@layout ProfileLayout
+
+<!-- Top Nav -->
+<div class="position-sticky top-0" style="z-index:1; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+    <div class="boundary bs-popover-bottom">
+        <div class="d-flex justify-content-between bg-fff py-3 pt-3">
+            <img @onclick="NavigateToHome" src="/assets/images/icons/icon-arrowBack.svg" alt="Icon-arrowBack" />
+            <div class="font-22-600">Chat</div>
+            <img src="/assets/images/icons/icon-moreOption.svg" alt="icon-moreOption" />
+        </div>
+    </div>
+</div>
+
+<div class="py-2">
+    <div class="boundary">
+        <div class="chat-bg border-2 my-3">
+            <div class="d-flex justify-content-between p-3">
+                <div class="d-flex align-items-center">
+                    <img class="profile-image" src="assets/demo_profile_pic.svg" />
+                    <div class="px-2">
+                        <div class="font-16-700">Mr John</div>
+                        <div class="font-12-400 text-secondary">CON-1576</div>
+                    </div>
+                </div>
+                <div>
+                    <div class="d-flex flex-column align-items-end">
+                        <div class="text-secondary">10:13</div>
+                        <div class="ellipse ellipse-notification mt-2"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="chat-bg border-2 my-3">
+            <div class="d-flex justify-content-between p-3">
+                <div class="d-flex align-items-center">
+                    <img class="profile-image" src="assets/demo_profile_pic.svg" />
+                    <div class="px-2">
+                        <div class="font-16-700">Mr John</div>
+                        <div class="font-12-400 text-secondary">CON-1576</div>
+                    </div>
+                </div>
+                <div>
+                    <div class="d-flex flex-column align-items-end">
+                        <div class="text-secondary">10:13</div>
+                        <div class="ellipse ellipse-notification mt-2"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="chat-bg border-2 my-3" @onclick="NavigateToChatGroup">
+            <div class="d-flex justify-content-between p-3">
+                <div class="d-flex align-items-center">
+                    <img class="profile-image" src="assets/images/icons/icon-APP111924.svg" />
+                    <div class="px-2">
+                        <div class="font-16-700">APP111924</div>
+                        <div class="font-12-400 text-secondary">5 December 2023</div>
+                    </div>
+                </div>
+                <div>
+                    <div class="d-flex flex-column align-items-end">
+                        <div class="text-secondary">10:13</div>
+                        <div class="ellipse ellipse-notification mt-2"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Bottom Navbar -->
+<NavbarBottom />
+
+@code {
+    [Inject] private NavigationManager NavigationManager { get; set; } = null!;
+
+    // Navigations
+    private void NavigateToHome()
+    {
+        NavigationManager.NavigateTo("home");
+    }
+    private void NavigateToChatGroup()
+    {
+        NavigationManager.NavigateTo("chatgroup");
+    }
+}

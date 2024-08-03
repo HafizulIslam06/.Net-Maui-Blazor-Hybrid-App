@@ -1,0 +1,48 @@
+﻿@page "/referthanks"
+
+@using Uapp.App.Components.Layout
+@layout ProfileLayout
+
+<!-- Top Nav -->
+<div class="position-sticky top-0" style="z-index:1; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+    <div class="boundary">
+        <div class="d-flex justify-content-between bg-fff py-3 pt-3">
+            <img @onclick="NavigateToHome" src="/assets/images/icons/icon-arrowBack.svg" alt="Icon-arrowBack" />
+            <div class="font-22-600">Refer a friend</div>
+            <img src="/assets/images/icons/icon-moreOption.svg" alt="icon-moreOption" />
+        </div>
+    </div>
+</div>
+
+<div class="text-center bg-fafafb">
+    <div class="boundary">
+        <div class="d-flex flex-column text-center pt-4">
+            <div class="pt-4">
+                <img src="/assets/images/icons/thank_u_refer.svg" alt="icon refer">
+            </div>
+            <div class="font-16-600 pt-4 mt-4">
+                Thank you! Your friend will receive an email invitation shortly.
+            </div>
+            <div class="mt-4">
+                <div class="font-14-600 text-secondary mt-3">Want to refer more friends?</div>
+                <div class="my-2">
+                    <a href="referfriend" class="button-invite">Invite another friend</a>
+                </div>
+            </div>
+        </div>
+        <div class="font-10-400 text-secondary pb-5 position-absolute bottom-0 start-0 end-0">
+            We respect your privacy and your friend's privacy.
+            Their information will only be used to send this invitation.
+        </div>
+    </div>
+</div>
+
+@code {
+    [Inject] private NavigationManager NavigationManager { get; set; } = null!;
+
+    // Navigations
+    private void NavigateToHome()
+    {
+        NavigationManager.NavigateTo("home");
+    }
+}
